@@ -1,4 +1,4 @@
-import { compareSync } from 'bcryptjs';
+import { compareSync, hash } from 'bcryptjs';
 import { NextFunction, Request, Response } from 'express';
 import { JwtPayload, sign } from 'jsonwebtoken';
 
@@ -25,15 +25,35 @@ class UserController {
     const { login, password } = req.body;
     const user: IUser = await User.findOne({ where: { login } });
     if (!user) {
-      return next(ApiError.internal('User not found!!!'));
+      return next(ApiError.badRequest('User not found!!!'));
     }
     const comparePassword = compareSync(password, user.password);
     if (!comparePassword) {
-      return next(ApiError.internal('Incorrect password!!!'));
+      return next(ApiError.badRequest('Incorrect password!!!'));
     }
     const token: string = generateJWT(user.login, user.role || 'author');
     const getUser = { login: user.login, role: user.role, token };
     return res.json(getUser);
+  }
+
+  async addUser(req: Request, res: Response, next: NextFunction) {
+    const { login, password } = req.body;
+    if (!login || !password) {
+      return next(ApiError.badRequest('Incorrect e-mail or password!!!'));
+    }
+    const getUser: IUser = await User.findOne({ where: { login } });
+    if (getUser) {
+      return next(ApiError.badRequest('This user already exists!!!'));
+    }
+    const hashPassword = await hash(password, 5);
+    const user: IUser = await User.create({ login, password: hashPassword });
+    const token: string = generateJWT(user.login, user.role);
+    return res.json({ token });
+  }
+
+  async getUsers(req: Request, res: Response) {
+    const users: IUser[] = await User.findAll();
+    return res.json(users);
   }
 }
 export default new UserController();

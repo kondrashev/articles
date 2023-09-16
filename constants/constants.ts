@@ -3,6 +3,7 @@ export interface IUser {
   login: string;
   role: string;
   password?: string;
+  token?: string;
 }
 
 export interface IGetUser {
