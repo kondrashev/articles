@@ -1,4 +1,6 @@
 import { config } from 'dotenv';
+
+import endpoints from '../constants/endpoints';
 config();
 import cors from 'cors';
 import express, { json, Request, Response, static as stat } from 'express';
@@ -13,7 +15,7 @@ const PORT = process.env.PORT;
 const app = express();
 app.use(cors());
 app.use(json());
-app.use('/', router);
+app.use(endpoints.authorization, router);
 app.use(stat(path.resolve(__dirname, 'static')));
 app.use(errorHandler);
 
@@ -27,7 +29,7 @@ app.use(errorHandler);
         password: '$2a$05$U7VzSGcmtMhpeFNZonkYvO1wUzlzG46qwEyU3NQ7wHsDupWtfjcyu',
         role: 'ADMIN',
       }));
-    app.get('/', (req: Request, res: Response) => {
+    app.get(endpoints.authorization, (req: Request, res: Response) => {
       res.sendFile('index.html', { root: './server/static/' });
     });
     // eslint-disable-next-line no-console
