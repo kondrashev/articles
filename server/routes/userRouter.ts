@@ -9,4 +9,5 @@ router.get(endpoints.authorization, UserController.authorization);
 router.post(endpoints.checkAuthorization, UserController.checkAuthorisation);
 router.post(endpoints.addUser, UserController.addUser);
 router.get(endpoints.getUsers, checkRole('ADMIN'), UserController.getUsers);
+router.post(endpoints.deleteUsers, checkRole('ADMIN'), UserController.deleteUsers);
 export default router;

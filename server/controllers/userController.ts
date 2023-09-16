@@ -36,6 +36,11 @@ class UserController {
     return res.json(getUser);
   }
 
+  async getUsers(req: Request, res: Response) {
+    const users: IUser[] = await User.findAll({ where: { role: 'AUTHOR' } });
+    return res.json(users);
+  }
+
   async addUser(req: Request, res: Response, next: NextFunction) {
     const { login, password } = req.body;
     if (!login || !password) {
@@ -51,9 +56,13 @@ class UserController {
     return res.json({ token });
   }
 
-  async getUsers(req: Request, res: Response) {
-    const users: IUser[] = await User.findAll();
-    return res.json(users);
+  deleteUsers(req: Request, res: Response) {
+    const { listId } = req.body;
+    const idS: string[] = JSON.parse(listId);
+    idS.forEach(async (id: string) => {
+      await User.destroy({ where: { id } });
+    });
+    return res.json(idS);
   }
 }
 export default new UserController();

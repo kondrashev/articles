@@ -5,4 +5,5 @@ export default {
   checkAuthorization: '/check',
   addUser: '/add/user',
   getUsers: '/get/users',
+  deleteUsers: '/delete/users',
 };
