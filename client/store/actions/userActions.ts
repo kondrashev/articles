@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { IGetUser } from '../../../constants/constants';
+import { IUser } from '../../../constants/constants';
 import endpoints from '../../../constants/endpoints';
 
 export interface IData {
@@ -8,7 +8,7 @@ export interface IData {
   password: string;
 }
 
-export const checkAuthorization = createAsyncThunk<IGetUser, IData, { rejectValue: string }>(
+export const checkAuthorization = createAsyncThunk<IUser, IData, { rejectValue: string }>(
   'user/checkAuthorization',
   async ({ login, password }, { rejectWithValue }) => {
     const response = await fetch(endpoints.signIn, {
@@ -19,7 +19,7 @@ export const checkAuthorization = createAsyncThunk<IGetUser, IData, { rejectValu
     if (!response.ok) {
       return rejectWithValue('Server Error!');
     }
-    const data: Promise<IGetUser> = response.json();
+    const data: Promise<IUser> = response.json();
     localStorage.setItem('token', `Bearer ${(await data).token}`);
     return data;
   },

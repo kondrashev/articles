@@ -6,12 +6,6 @@ export interface IUser {
   token?: string;
 }
 
-export interface IGetUser {
-  login: string;
-  role: string;
-  token: string;
-}
-
 export interface IArticle {
   id: number;
   author: string;
