@@ -4,7 +4,6 @@ export interface IUser {
   role: string;
   password?: string;
   token?: string;
-  hasMany: unknown;
 }
 
 export interface IArticle {
