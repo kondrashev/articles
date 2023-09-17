@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 
-import ApiError from '../error/apiError';
-
-export default function errorHandler(err, req: Request, res: Response) {
-  if (err instanceof ApiError) {
-    return res.status(err.status).json({ message: err.message });
+export default function errorHandler(req: Request, res: Response, next: NextFunction) {
+  const error = validationResult(req);
+  if (!error.isEmpty()) {
+    return res.json(error);
   }
-  return res.status(500).json({ message: 'Unknown error!!!' });
+  next();
 }
