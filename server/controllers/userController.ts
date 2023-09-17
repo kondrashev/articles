@@ -58,11 +58,10 @@ class UserController {
 
   deleteUsers(req: Request, res: Response) {
     const { listId } = req.body;
-    const idS: string[] = JSON.parse(listId);
-    idS.forEach(async (id: string) => {
+    JSON.parse(listId).forEach(async (id: string) => {
       await User.destroy({ where: { id } });
     });
-    return res.json(idS);
+    return res.json(listId);
   }
 }
 export default new UserController();
