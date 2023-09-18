@@ -3,7 +3,6 @@ import { NextFunction, Request, Response } from 'express';
 import { JwtPayload, sign } from 'jsonwebtoken';
 
 import { IUser } from '../../constants/constants';
-import ApiError from '../error/apiError';
 import { User } from '../models/models';
 
 export interface CustomRequest extends Request {
@@ -25,11 +24,11 @@ class UserController {
     const { login, password } = req.body;
     const user: IUser = await User.findOne({ where: { login } });
     if (!user) {
-      return next(ApiError.badRequest('User not found!!!'));
+      return next(res.json('User not found!!!'));
     }
     const comparePassword = compareSync(password, user.password);
     if (!comparePassword) {
-      return next(ApiError.badRequest('Incorrect password!!!'));
+      return next(res.json('Incorrect password!!!'));
     }
     const token: string = generateJWT(user.login, user.role || 'author');
     const getUser = { login: user.login, role: user.role, token };
@@ -44,11 +43,11 @@ class UserController {
   async addUser(req: Request, res: Response, next: NextFunction) {
     const { login, password } = req.body;
     if (!login || !password) {
-      return next(ApiError.badRequest('Incorrect e-mail or password!!!'));
+      return next(res.json('Incorrect e-mail or password!!!'));
     }
     const getUser: IUser = await User.findOne({ where: { login } });
     if (getUser) {
-      return next(ApiError.badRequest('This user already exists!!!'));
+      return next(res.json('This user already exists!!!'));
     }
     const hashPassword = await hash(password, 5);
     const user: IUser = await User.create({ login, password: hashPassword });
