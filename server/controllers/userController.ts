@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { JwtPayload, sign } from 'jsonwebtoken';
 
 import { IUser } from '../../constants/constants';
-import { User } from '../models/models';
+import User from '../database/models/user';
 
 export interface CustomRequest extends Request {
   token: string | JwtPayload;

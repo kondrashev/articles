@@ -6,9 +6,9 @@ import cors from 'cors';
 import express, { json, Request, Response, static as stat } from 'express';
 import path from 'path';
 
-import { User } from '../server/models/models';
+import User from './database/models/user';
 import router from '../server/routes/index';
-import db from './db';
+import connection from './database/connection';
 import errorHandler from './middleware/ErrorHandlingMiddleware';
 
 const PORT = process.env.PORT;
@@ -21,7 +21,7 @@ app.use(errorHandler);
 
 (async () => {
   try {
-    await db.sync({ alter: true });
+    await connection.sync({ alter: true });
     const getUserAd = await User.findOne({ where: { login: 'pavel' } });
     !getUserAd &&
       (await User.create({
