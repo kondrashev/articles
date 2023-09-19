@@ -77,5 +77,11 @@
     "hooks":{
       "pre-commit":"lint-staged"
     }
+  },
+  "lint-staged":{
+    "*.{js,jsx,ts,tsx,scss,md,html}":[
+      "prettier --single-quote --write",
+      "git add"
+    ]
   }
 }
