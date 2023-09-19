@@ -80,7 +80,7 @@ const Authorization: React.FC = () => {
           onKeyPress={onPressKey}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton aria-label="toggle password visibility" onClick={console.log} onMouseDown={console.log} edge="end">
+              <IconButton aria-label="toggle password visibility" onClick={} onMouseDown={console.log} edge="end">
                 {true ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
