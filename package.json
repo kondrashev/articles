@@ -7,8 +7,7 @@
     "dev": "NODE_ENV=development ts-node-dev --respawn server/index.ts",
     "client": "webpack --watch --output ./server/static/bundle.js",
     "all": "concurrently \"npm run dev\" \"npm run client\"",
-    "build": "webpack --output ./server/static/bundle.js",
-    "test": "react-scripts test"
+    "build": "webpack --output ./server/static/bundle.js"
   },
   "author": "kondrashev",
   "license": "ISC",
