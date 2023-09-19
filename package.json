@@ -63,7 +63,7 @@
     "eslint-plugin-simple-import-sort": "8.0.0",
     "html-webpack-plugin": "^4.5.2",
     "husky": "^8.0.3",
-    "lint-staged": "^13.3.0",
+    "lint-staged": "^14.0.1",
     "node-sass": "^8.0.0",
     "prettier": "^2.8.1",
     "sass-loader": "^10.4.1",
@@ -79,8 +79,7 @@
     }
   },
   "lint-staged":{
-    "*.{js,jsx,ts,tsx,scss,md,html}":[
-      "prettier --single-quote --write",
+    "*.tsx":[
       "git add"
     ]
   }
