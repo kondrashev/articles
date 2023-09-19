@@ -32,7 +32,7 @@ const Authorization: React.FC = () => {
     } else {
       navigate('/panel');
     }
-  }, [getUser.role]);
+  }, [getUser.login]);
   const onChangeLogin = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({
       ...values,

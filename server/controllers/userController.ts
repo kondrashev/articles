@@ -30,7 +30,7 @@ class UserController {
     if (!comparePassword) {
       return next(res.json('Incorrect password!!!'));
     }
-    const token: string = generateJWT(user.login, user.role || 'author');
+    const token: string = generateJWT(user.login, user.role || 'AUTHOR');
     const getUser = { login: user.login, role: user.role, token };
     return res.json(getUser);
   }
