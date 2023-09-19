@@ -7,7 +7,9 @@
     "dev": "NODE_ENV=development ts-node-dev --respawn server/index.ts",
     "client": "webpack --watch --output ./server/static/bundle.js",
     "all": "concurrently \"npm run dev\" \"npm run client\"",
-    "build": "webpack --output ./server/static/bundle.js"
+    "build": "webpack --output ./server/static/bundle.js",
+    "prepare": "husky install",
+    "test": "react-scripts test"
   },
   "author": "kondrashev",
   "license": "ISC",
@@ -62,7 +64,6 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-simple-import-sort": "8.0.0",
     "html-webpack-plugin": "^4.5.2",
-    "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "node-sass": "^8.0.0",
     "prettier": "^2.8.1",
