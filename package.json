@@ -8,7 +8,6 @@
     "client": "webpack --watch --output ./server/static/bundle.js",
     "all": "concurrently \"npm run dev\" \"npm run client\"",
     "build": "webpack --output ./server/static/bundle.js",
-    "prepare": "husky install",
     "test": "react-scripts test"
   },
   "author": "kondrashev",
