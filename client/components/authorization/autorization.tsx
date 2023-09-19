@@ -18,7 +18,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { checkAuthorization } from '../../store/actions/userActions';
 
 const Authorization: React.FC = () => {
-  const { values, setValues } = useAppContext();
+    const { values, setValues } = useAppContext();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const getUser = useAppSelector((state) => state.user.user);
