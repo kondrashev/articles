@@ -9,8 +9,7 @@
     "all": "concurrently \"npm run dev\" \"npm run client\"",
     "build": "webpack --output ./server/static/bundle.js",
     "prepare": "husky install",
-    "lint": "eslint -c .eslintrc.js --ext .ts/ --max-warnings=0",
-    "staged":"git-format-staged -f 'prettier --ignore-unknown --stdin --stdin-filepath \"{}\"' ."
+    "lint": "eslint . --ext .tsx"
   },
   "author": "kondrashev",
   "license": "ISC",
@@ -64,7 +63,6 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-simple-import-sort": "8.0.0",
-    "git-format-staged": "^3.0.0",
     "html-webpack-plugin": "^4.5.2",
     "husky": "^8.0.0",
     "lint-staged": "^14.0.1",
