@@ -9,7 +9,7 @@
     "all": "concurrently \"npm run dev\" \"npm run client\"",
     "build": "webpack --output ./server/static/bundle.js",
     "prepare": "husky install",
-    "lint": "eslint -c .eslintrc.js"
+    "lint": "eslint -c .eslintrc.js --ext .ts/ --max-warnings=0"
   },
   "author": "kondrashev",
   "license": "ISC",
