@@ -21,7 +21,7 @@ const Authorization: React.FC = () => {
   const { values, setValues } = useAppContext();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-    const getUser = useAppSelector((state) => state.user.user);
+  const getUser = useAppSelector((state) => state.user.user);
   useEffect(() => {
     if (getUser.login === 'none') {
       navigate('/panel');
