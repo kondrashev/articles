@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import '@styles/AuthorizationForm.scss';
 
 import Visibility from '@mui/icons-material/Visibility';
