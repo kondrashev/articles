@@ -15,7 +15,7 @@ interface IUserArticle {
   destroy;
 }
 
-const Article: IUserArticle = connection.define('article', {
+const Article: IUserArticle = connection.define('articles', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   author: { type: DataTypes.STRING, allowNull: false },
   title: { type: DataTypes.STRING },

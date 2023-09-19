@@ -15,7 +15,7 @@ interface IUserModel {
   destroy;
 }
 
-const User: IUserModel = connection.define('user', {
+const User: IUserModel = connection.define('users', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   login: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
