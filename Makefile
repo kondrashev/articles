@@ -1,4 +1,4 @@
-# for start these commands nessasary to run this => /make -j 1 start/
+#To start these commands necessary to run this => /make -j 1 start/
 start: 1 2 3 4
 1:
 	echo "Running docker compose stop"
