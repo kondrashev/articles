@@ -5,6 +5,7 @@ interface IProps {
 interface IValuesTypes {
   login: string;
   password: string;
+  isShowPassword: boolean;
 }
 interface IValues {
   values: IValuesTypes;
@@ -18,6 +19,7 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
   const [values, setValues] = useState({
     login: '',
     password: '',
+    isShowPassword: false,
   });
   const value = {
     values,

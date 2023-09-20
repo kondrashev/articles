@@ -56,6 +56,12 @@ const Authorization: React.FC = () => {
   const aothorization = () => {
     dispatch(checkAuthorization(values));
   };
+  const visiblePassword = () => {
+    setValues({
+      ...values,
+      isShowPassword: !values.isShowPassword,
+    });
+  };
 
   return (
     <Box className="formAuthorization">
@@ -74,14 +80,14 @@ const Authorization: React.FC = () => {
           id="outlined-adornment-password"
           disabled={false}
           value={values.password}
-          type={true ? 'text' : 'password'}
+          type={values.isShowPassword ? 'text' : 'password'}
           onChange={onChangePassword}
           className="fields"
           onKeyPress={onPressKey}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton aria-label="toggle password visibility" onClick={console.log} onMouseDown={console.log} edge="end">
-                {true ? <VisibilityOff /> : <Visibility />}
+              <IconButton aria-label="toggle password visibility" onClick={visiblePassword} onMouseDown={console.log} edge="end">
+                {values.isShowPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
           }
