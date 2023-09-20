@@ -78,7 +78,7 @@ const Authorization: React.FC = () => {
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
-          disabled={false}
+          disabled={values.login ? false : true}
           value={values.password}
           type={values.isShowPassword ? 'text' : 'password'}
           onChange={onChangePassword}
@@ -94,7 +94,14 @@ const Authorization: React.FC = () => {
           label="Password"
         />
       </FormControl>
-      <Button disableElevation variant="contained" color="primary" className="fields" onClick={aothorization} disabled={false}>
+      <Button
+        disableElevation
+        variant="contained"
+        color="primary"
+        className="fields"
+        onClick={aothorization}
+        disabled={values.password ? false : true}
+      >
         Authorization
       </Button>
     </Box>
