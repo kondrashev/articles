@@ -1,5 +1,5 @@
 #To start these commands necessary to run this => /make -j 1 start/
-start: 1 2 3 4
+start: 1 2 3 4 5
 1:
 	echo "Running docker compose stop"
 	docker compose down
@@ -12,3 +12,6 @@ start: 1 2 3 4
 4:
 	echo "Running docker compose start"
 	docker compose up -d
+5:
+	echo "Running webpack watch"
+	npm run client
