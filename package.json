@@ -6,7 +6,6 @@
     "start": "ts-node-dev --respawn server/index.ts",
     "dev": "NODE_ENV=development ts-node-dev --respawn server/index.ts",
     "client": "webpack --watch --output ./server/static/bundle.js",
-    "all": "concurrently \"npm run dev\" \"npm run client\"",
     "build": "webpack --output ./server/static/bundle.js",
     "prepare": "husky install",
     "lint": "eslint . --ext .ts,.tsx"
@@ -53,7 +52,6 @@
     "@typescript-eslint/parser": "6.0.0",
     "babel-loader": "^8.3.0",
     "babel-polyfill": "^6.26.0",
-    "concurrently": "^8.0.1",
     "cross-env": "7.0.3",
     "css-loader": "^5.0.2",
     "eslint": "8.13.0",
