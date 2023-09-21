@@ -2,6 +2,7 @@ import '@styles/AuthorizationForm.scss';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -33,6 +34,13 @@ const Authorization: React.FC = () => {
       navigate('/panel');
     }
   }, [getUser.login]);
+  useEffect(() => {
+    setValues({
+      ...values,
+      errorForm: getUser.login === undefined ? true : false,
+      errorMessage: 'Incorrect login or password!',
+    });
+  }, [values.showErrorForm]);
   const onChangeLogin = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({
       ...values,
@@ -46,15 +54,16 @@ const Authorization: React.FC = () => {
     });
   };
   const authorizationCheck = () => {
+    setValues({
+      ...values,
+      showErrorForm: !values.showErrorForm,
+    });
     dispatch(checkAuthorization(values));
   };
   const onPressKey = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       authorizationCheck();
     }
-  };
-  const aothorization = () => {
-    dispatch(checkAuthorization(values));
   };
   const visiblePassword = () => {
     setValues({
@@ -86,7 +95,7 @@ const Authorization: React.FC = () => {
           onKeyPress={onPressKey}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton aria-label="toggle password visibility" onClick={visiblePassword} onMouseDown={console.log} edge="end">
+              <IconButton aria-label="toggle password visibility" onClick={visiblePassword} edge="end">
                 {values.isShowPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
@@ -99,11 +108,24 @@ const Authorization: React.FC = () => {
         variant="contained"
         color="primary"
         className="fields"
-        onClick={aothorization}
+        onClick={authorizationCheck}
         disabled={values.password ? false : true}
       >
         Authorization
       </Button>
+      {values.errorForm && (
+        <Alert
+          onClose={() => {
+            setValues({
+              ...values,
+              errorForm: false,
+              errorMessage: '',
+            });
+          }}
+        >
+          {values.errorMessage}
+        </Alert>
+      )}
     </Box>
   );
 };
