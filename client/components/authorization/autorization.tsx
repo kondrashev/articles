@@ -23,6 +23,7 @@ const Authorization: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const getUser = useAppSelector((state) => state.user.user);
+
   useEffect(() => {
     if (getUser.login === 'none') {
       navigate('/panel');
@@ -37,7 +38,8 @@ const Authorization: React.FC = () => {
   useEffect(() => {
     setValues({
       ...values,
-      errorForm: getUser.login === undefined ? true : false,
+      loginForm: getUser.login,
+      errorForm: values.loginForm === 'none' ? true : false,
       errorMessage: 'Incorrect login or password!',
     });
   }, [values.showErrorForm]);
@@ -120,6 +122,7 @@ const Authorization: React.FC = () => {
               ...values,
               errorForm: false,
               errorMessage: '',
+              loginForm: 'none',
             });
           }}
         >
