@@ -5,15 +5,22 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background: #d7e8f0;
+    background: #abdef3;
     border-radius: 10px;
     position: absolute;
     left: 50%;
     transform: translate(-50%, 80%);
+    position: absolute;
 
     .fields {
         width: 360px;
         height: 50px;
+    }
+
+    .formAlert{
+        position: absolute;
+        top: 208px;
+        left: 15%;
     }
     
 }

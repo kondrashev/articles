@@ -117,6 +117,7 @@ const Authorization: React.FC = () => {
       </Button>
       {values.errorForm && (
         <Alert
+          className="formAlert"
           onClose={() => {
             setValues({
               ...values,

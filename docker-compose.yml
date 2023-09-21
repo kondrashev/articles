@@ -30,5 +30,7 @@ services:
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=articles
     volumes:
-      - /var/lib/postgresql/data:/nps_data
+      - nps_data:/var/lib/postgresql/data
     restart: always
+volumes:
+  nps_data: {}
