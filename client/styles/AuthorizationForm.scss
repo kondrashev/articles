@@ -10,7 +10,6 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, 80%);
-    position: absolute;
 
     .fields {
         width: 360px;
@@ -22,5 +21,21 @@
         top: 208px;
         left: 15%;
     }
-    
+
+    .inputErrorLogin{
+        position: absolute;
+        top:100px;
+        left: 30px;
+        font-size: 13px;
+        color: red;
+    }
+
+    .inputErrorPassword{
+        position: absolute;
+        top:210px;
+        left: 30px;
+        font-size: 13px;
+        color: red;
+    }
+
 }
