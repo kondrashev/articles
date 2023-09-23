@@ -3,8 +3,6 @@ interface IProps {
   children: ReactNode;
 }
 interface IValuesTypes {
-  login: string;
-  password: string;
   isShowPassword: boolean;
   showErrorForm: boolean;
   errorForm: boolean;
@@ -21,8 +19,6 @@ export const useAppContext = () => useContext(AppContext);
 
 const AppContextPovider: React.FC<IProps> = ({ children }) => {
   const [values, setValues] = useState({
-    login: '',
-    password: '',
     isShowPassword: false,
     showErrorForm: false,
     errorForm: false,
