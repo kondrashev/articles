@@ -9,8 +9,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Admin from './components/admin/admin';
 import ListArticles from './components/articles/listArticles';
 import Author from './components/author/author';
-import Authorization from './components/authorization/autorization';
-import Test from './components/authorization/test';
+import Authorization from './components/authorization/authorization';
 import AppContextPovider from './context/context';
 import { setupStore } from './store';
 
@@ -23,8 +22,7 @@ const App: React.FC = () => {
         <Box className="container">
           <Routes>
             <Route path="/" element={<ListArticles />} />
-            {/* <Route path="/panel" element={<Authorization />} /> */}
-            <Route path="/panel" element={<Test />} />
+            <Route path="/panel" element={<Authorization />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/author" element={<Author />} />
           </Routes>

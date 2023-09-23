@@ -2,6 +2,7 @@ import '@styles/AuthorizationForm';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import IconButton from '@mui/material/IconButton';
@@ -9,19 +10,47 @@ import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import TextField from '@mui/material/TextField';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { IUser } from '../../../constants/constants';
 import { useAppContext } from '../../context/context';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { checkAuthorization, IData } from '../../store/actions/userActions';
 
-const Test: React.FC = () => {
+const Authorization: React.FC = () => {
   const { values, setValues } = useAppContext();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const getUser: IUser = useAppSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (getUser.login === 'none') {
+      navigate('/panel');
+    } else if (getUser.role === 'ADMIN') {
+      navigate('/admin');
+    } else if (getUser.role === 'AUTHOR') {
+      navigate('/author');
+    } else {
+      navigate('/panel');
+    }
+  }, [getUser.login]);
+
+  useEffect(() => {
+    setValues({
+      ...values,
+      loginForm: getUser.login,
+      errorForm: values.loginForm === 'none' ? true : false,
+      errorMessage: 'Incorrect login or password!',
+    });
+  }, [values.showErrorForm]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IUser>();
+  } = useForm<IData>();
 
   const visiblePassword = () => {
     setValues({
@@ -30,11 +59,12 @@ const Test: React.FC = () => {
     });
   };
 
-  const authorizationCheck = (data: IUser) => {
+  const authorizationCheck = (data: IData) => {
     setValues({
       ...values,
       showErrorForm: !values.showErrorForm,
     });
+    dispatch(checkAuthorization(data));
   };
 
   return (
@@ -78,8 +108,23 @@ const Test: React.FC = () => {
       <Button disableElevation type="submit" variant="contained" color="primary" className="fields">
         Authorization
       </Button>
+      {values.errorForm && (
+        <Alert
+          className="formAlert"
+          onClose={() => {
+            setValues({
+              ...values,
+              errorForm: false,
+              errorMessage: '',
+              loginForm: 'none',
+            });
+          }}
+        >
+          {values.errorMessage}
+        </Alert>
+      )}
     </form>
   );
 };
 
-export default Test;
+export default Authorization;
