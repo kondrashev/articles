@@ -4,6 +4,7 @@ export interface IUser {
   role?: string;
   password: string;
   token?: string;
+  registration?: boolean;
 }
 
 export interface IArticle {

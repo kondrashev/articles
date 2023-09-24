@@ -5,8 +5,8 @@ import endpoints from '../../../constants/endpoints';
 
 export const checkAuthorization = createAsyncThunk<IUser, IUser, { rejectValue: string }>(
   'user/checkAuthorization',
-  async ({ login, password }, { rejectWithValue }) => {
-    const response = await fetch(endpoints.signIn, {
+  async ({ login, password, registration }, { rejectWithValue }) => {
+    const response = await fetch(`${endpoints.userRouter}${!registration ? endpoints.checkAuthorization : endpoints.addUser}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ login, password }),

@@ -8,6 +8,7 @@ interface IValuesTypes {
   errorForm: boolean;
   errorMessage: string;
   loginForm: string;
+  registration: boolean;
 }
 interface IValues {
   values: IValuesTypes;
@@ -24,6 +25,7 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     errorForm: false,
     errorMessage: '',
     loginForm: '',
+    registration: false,
   });
   const value = {
     values,

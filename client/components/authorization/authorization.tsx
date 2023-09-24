@@ -5,10 +5,12 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -64,7 +66,15 @@ const Authorization: React.FC = () => {
       ...values,
       showErrorForm: !values.showErrorForm,
     });
-    dispatch(checkAuthorization(data));
+    const newData = { ...data, registration: values.registration };
+    dispatch(checkAuthorization(newData));
+  };
+
+  const handleChangeSwitch = () => {
+    setValues({
+      ...values,
+      registration: !values.registration,
+    });
   };
 
   return (
@@ -103,6 +113,7 @@ const Authorization: React.FC = () => {
           label="Password"
         />
       </FormControl>
+      <FormControlLabel className="switch" control={<Switch onChange={handleChangeSwitch} />} label="Registration" />
       {errors?.password?.type === 'required' && <InputLabel className="inputErrorPassword">This field is required!</InputLabel>}
       {errors?.password?.type === 'minLength' && <InputLabel className="inputErrorPassword">Password cannot be less 2 characters!</InputLabel>}
       <Button disableElevation type="submit" variant="contained" color="primary" className="fields">
