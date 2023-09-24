@@ -44,7 +44,7 @@ const Authorization: React.FC = () => {
       ...values,
       loginForm: getUser.login,
       errorForm: values.loginForm === 'none' ? true : false,
-      errorMessage: 'Incorrect login or password!',
+      errorMessage: !values.registration ? 'Incorrect login or password!' : 'This username already exists!',
     });
   }, [values.showErrorForm]);
 
