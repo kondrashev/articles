@@ -3,12 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IUser } from '../../../constants/constants';
 import endpoints from '../../../constants/endpoints';
 
-export interface IData {
-  login: string;
-  password: string;
-}
-
-export const checkAuthorization = createAsyncThunk<IUser, IData, { rejectValue: string }>(
+export const checkAuthorization = createAsyncThunk<IUser, IUser, { rejectValue: string }>(
   'user/checkAuthorization',
   async ({ login, password }, { rejectWithValue }) => {
     const response = await fetch(endpoints.signIn, {

@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { IUser } from '../../../constants/constants';
 import { useAppContext } from '../../context/context';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { checkAuthorization, IData } from '../../store/actions/userActions';
+import { checkAuthorization } from '../../store/actions/userActions';
 
 const Authorization: React.FC = () => {
   const { values, setValues } = useAppContext();
@@ -50,7 +50,7 @@ const Authorization: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IData>();
+  } = useForm<IUser>();
 
   const visiblePassword = () => {
     setValues({
@@ -59,7 +59,7 @@ const Authorization: React.FC = () => {
     });
   };
 
-  const authorizationCheck = (data: IData) => {
+  const authorizationCheck = (data: IUser) => {
     setValues({
       ...values,
       showErrorForm: !values.showErrorForm,
