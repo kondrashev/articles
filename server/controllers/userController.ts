@@ -52,7 +52,8 @@ class UserController {
     const hashPassword = await hash(password, 5);
     const user: IUser = await User.create({ login, password: hashPassword });
     const token: string = generateJWT(user.login, user.role);
-    return res.json({ token });
+    const userGet = { login: user.login, role: user.role, token };
+    return res.json(userGet);
   }
 
   deleteUsers(req: Request, res: Response) {

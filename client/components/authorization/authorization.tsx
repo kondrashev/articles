@@ -113,11 +113,15 @@ const Authorization: React.FC = () => {
           label="Password"
         />
       </FormControl>
-      <FormControlLabel className="switch" control={<Switch onChange={handleChangeSwitch} />} label="Registration" />
+      <FormControlLabel
+        className="switch"
+        control={<Switch onChange={handleChangeSwitch} />}
+        label={!values.registration ? 'Authorization' : 'Registration'}
+      />
       {errors?.password?.type === 'required' && <InputLabel className="inputErrorPassword">This field is required!</InputLabel>}
       {errors?.password?.type === 'minLength' && <InputLabel className="inputErrorPassword">Password cannot be less 2 characters!</InputLabel>}
       <Button disableElevation type="submit" variant="contained" color="primary" className="fields">
-        Authorization
+        {!values.registration ? 'Authorization' : 'Registration'}
       </Button>
       {values.errorForm && (
         <Alert
