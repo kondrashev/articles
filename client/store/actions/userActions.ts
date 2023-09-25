@@ -19,3 +19,13 @@ export const checkAuthorization = createAsyncThunk<IUser, IUser, { rejectValue: 
     return data;
   },
 );
+
+export const getUsers = createAsyncThunk<IUser[]>('user/getUsers', async () => {
+  const response = await fetch(`${endpoints.userRouter}${endpoints.getUsers}`, {
+    headers: {
+      Authorization: localStorage.token,
+    },
+  });
+  const users: Promise<IUser[]> = response.json();
+  return users;
+});

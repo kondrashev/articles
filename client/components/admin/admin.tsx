@@ -19,7 +19,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { visuallyHidden } from '@mui/utils';
-import * as React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+
+import { IUser } from '../../../constants/constants';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { getUsers } from '../../store/actions/userActions';
 
 interface Data {
   calories: number;
@@ -226,12 +230,21 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 }
 
 const Admin = () => {
-  const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
-  const [selected, setSelected] = React.useState<readonly string[]>([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [order, setOrder] = useState<Order>('asc');
+  const [orderBy, setOrderBy] = useState<keyof Data>('calories');
+  const [selected, setSelected] = useState<readonly string[]>([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const dispatch = useAppDispatch();
+  const users: IUser[] = useAppSelector((state) => state.users.users);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
+
+  console.log(users);
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -283,7 +296,7 @@ const Admin = () => {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const visibleRows = React.useMemo(
+  const visibleRows = useMemo(
     () => stableSort(rows, getComparator(order, orderBy)).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
     [order, orderBy, page, rowsPerPage],
   );
