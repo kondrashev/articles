@@ -5,6 +5,7 @@ export interface IUser {
   password: string;
   token?: string;
   registration?: boolean;
+  createdAt?: string;
 }
 
 export interface IArticle {
