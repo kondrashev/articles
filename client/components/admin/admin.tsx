@@ -198,7 +198,7 @@ const Admin: React.FC = () => {
           </Typography>
         ) : (
           <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-            Nutrition
+            USERS
           </Typography>
         )}
         {numSelected > 0 ? (
@@ -296,7 +296,6 @@ const Admin: React.FC = () => {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                // {rows.map((row, index) => {
                 const isItemSelected = isSelected(String(row.id));
                 const labelId = `enhanced-table-checkbox-${index}`;
 
