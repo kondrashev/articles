@@ -25,7 +25,7 @@ const Authorization: React.FC = () => {
   const { values, setValues } = useAppContext();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const getUser: IUser = useAppSelector((state) => state.user.user);
+  const getUser: IUser = useAppSelector((state) => state.userSlice.user);
 
   useEffect(() => {
     if (getUser.login === 'none') {

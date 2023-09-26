@@ -31,7 +31,7 @@ export const userSlice = createSlice({
       state.loading = false;
     });
   },
-});
+}).reducer;
 
 export const usersSlice = createSlice({
   name: 'users',
@@ -47,6 +47,6 @@ export const usersSlice = createSlice({
       state.loading = false;
     });
   },
-});
+}).reducer;
 
-export default { user: userSlice.reducer, users: usersSlice.reducer };
+export default { userSlice, usersSlice };
