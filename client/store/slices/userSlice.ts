@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IUser } from '../../../constants/constants';
 import { checkAuthorization, getUsers } from '../actions/userActions';
@@ -17,36 +17,38 @@ const initialState: userState = {
   users: [],
 };
 
-export const userSlice = createSlice({
-  name: 'user',
+const usersReducer = createSlice({
+  name: 'usersReducer',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(checkAuthorization.pending, (state) => {
+  extraReducers: {
+    [checkAuthorization.pending.type]: (state) => {
       state.loading = true;
       state.error = '';
-    });
-    builder.addCase(checkAuthorization.fulfilled, (state, action) => {
+    },
+    [checkAuthorization.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
       state.user = action.payload;
       state.loading = false;
-    });
-  },
-}).reducer;
-
-export const usersSlice = createSlice({
-  name: 'users',
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(getUsers.pending, (state) => {
+      state.error = '';
+    },
+    [checkAuthorization.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [getUsers.pending.type]: (state) => {
       state.loading = true;
       state.error = '';
-    });
-    builder.addCase(getUsers.fulfilled, (state, action) => {
+    },
+    [getUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
       state.users = action.payload;
       state.loading = false;
-    });
+      state.error = '';
+    },
+    [getUsers.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 }).reducer;
 
-export default { userSlice, usersSlice };
+export default usersReducer;

@@ -238,7 +238,7 @@ const Admin = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const dispatch = useAppDispatch();
-  const users: IUser[] = useAppSelector((state) => state.usersSlice.users);
+  const users: IUser[] = useAppSelector((state) => state.usersReducer.users);
 
   useEffect(() => {
     dispatch(getUsers());
