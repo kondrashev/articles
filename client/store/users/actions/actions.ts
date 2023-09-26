@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { IUser } from '../../../constants/constants';
-import endpoints from '../../../constants/endpoints';
+import { IUser } from '../../../../constants/constants';
+import endpoints from '../../../../constants/endpoints';
 
 export const checkAuthorization = createAsyncThunk<IUser, IUser, { rejectValue: string }>(
   'user/checkAuthorization',

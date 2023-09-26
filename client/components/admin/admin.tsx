@@ -23,7 +23,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { IUser } from '../../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { getUsers } from '../../store/actions/userActions';
+import { getUsers } from '../../store/users/actions/actions';
 
 interface Data {
   calories: number;

@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { IUser } from '../../../constants/constants';
 import { useAppContext } from '../../context/context';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { checkAuthorization } from '../../store/actions/userActions';
+import { checkAuthorization } from '../../store/users/actions/actions';
 
 const Authorization: React.FC = () => {
   const { values, setValues } = useAppContext();

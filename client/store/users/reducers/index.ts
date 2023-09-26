@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IUser } from '../../../constants/constants';
-import { checkAuthorization, getUsers } from '../actions/userActions';
+import { IUser } from '../../../../constants/constants';
+import { checkAuthorization, getUsers } from '../actions/actions';
 
 interface userState {
   loading: boolean;
@@ -22,26 +22,26 @@ const usersReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [checkAuthorization.pending.type]: (state) => {
-      state.loading = true;
-      state.error = '';
-    },
     [checkAuthorization.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
       state.user = action.payload;
       state.loading = false;
+      state.error = '';
+    },
+    [checkAuthorization.pending.type]: (state) => {
+      state.loading = true;
       state.error = '';
     },
     [checkAuthorization.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },
-    [getUsers.pending.type]: (state) => {
-      state.loading = true;
-      state.error = '';
-    },
     [getUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
       state.users = action.payload;
       state.loading = false;
+      state.error = '';
+    },
+    [getUsers.pending.type]: (state) => {
+      state.loading = true;
       state.error = '';
     },
     [getUsers.rejected.type]: (state, action: PayloadAction<string>) => {
