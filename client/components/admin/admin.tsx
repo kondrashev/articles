@@ -38,6 +38,7 @@ const Admin: React.FC = () => {
 
   useEffect(() => {
     dispatch(getUsers());
+    setSelected([]);
   }, [update]);
 
   function createData(id: number, login: string, role: string, createdAt: string): Data {
