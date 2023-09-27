@@ -20,6 +20,23 @@ export const checkAuthorization = createAsyncThunk<IUser, IUser, { rejectValue: 
   },
 );
 
+interface listId {
+  listId: number[];
+}
+
+export const deleteUsers = createAsyncThunk<listId, listId, { rejectValue: string }>('user/deleteUsers', async (listId, { rejectWithValue }) => {
+  const response = await fetch(`${endpoints.userRouter}${endpoints.deleteUsers}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: localStorage.token },
+    body: JSON.stringify(listId),
+  });
+  if (!response.ok) {
+    return rejectWithValue(`Error from server №${response.status} ${response.statusText}!!!`);
+  }
+  const Ids: Promise<listId> = response.json();
+  return Ids;
+});
+
 export const getUsers = createAsyncThunk<IUser[]>('user/getUsers', async () => {
   const response = await fetch(`${endpoints.userRouter}${endpoints.getUsers}`, {
     headers: {

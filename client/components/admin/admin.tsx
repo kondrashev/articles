@@ -1,5 +1,4 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -23,7 +22,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { IUser } from '../../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { getUsers } from '../../store/users/actions/actions';
+import { deleteUsers, getUsers } from '../../store/users/actions/actions';
 
 interface Data {
   id: number;
@@ -35,10 +34,11 @@ interface Data {
 const Admin: React.FC = () => {
   const dispatch = useAppDispatch();
   const users: IUser[] = useAppSelector((state) => state.usersReducer.users);
+  const update: boolean = useAppSelector((state) => state.usersReducer.update);
 
   useEffect(() => {
     dispatch(getUsers());
-  }, []);
+  }, [update]);
 
   function createData(id: number, login: string, role: string, createdAt: string): Data {
     return {
@@ -182,6 +182,13 @@ const Admin: React.FC = () => {
   function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     const { numSelected } = props;
 
+    const usersDelete = () => {
+      const listId = {
+        listId: selected.map((item) => Number(item)),
+      };
+      dispatch(deleteUsers(listId));
+    };
+
     return (
       <Toolbar
         sx={{
@@ -201,16 +208,10 @@ const Admin: React.FC = () => {
             USERS
           </Typography>
         )}
-        {numSelected > 0 ? (
+        {numSelected > 0 && (
           <Tooltip title="Delete">
-            <IconButton>
+            <IconButton onClick={usersDelete}>
               <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton>
-              <FilterListIcon />
             </IconButton>
           </Tooltip>
         )}
@@ -220,7 +221,7 @@ const Admin: React.FC = () => {
 
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof Data>('login');
-  const [selected, setSelected] = useState<readonly string[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -242,8 +243,7 @@ const Admin: React.FC = () => {
 
   const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
-    let newSelected: readonly string[] = [];
-
+    let newSelected: string[] = [];
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, name);
     } else if (selectedIndex === 0) {
@@ -253,7 +253,6 @@ const Admin: React.FC = () => {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
     }
-
     setSelected(newSelected);
   };
 
