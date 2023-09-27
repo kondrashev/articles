@@ -8,8 +8,6 @@ interface userState {
   error: string;
   user: IUser;
   users: IUser[];
-  listUsersId: string[];
-  update: boolean;
 }
 
 const initialState: userState = {
@@ -17,8 +15,6 @@ const initialState: userState = {
   error: '',
   user: { id: 0, login: 'none', password: '', role: 'AUTHOR' },
   users: [],
-  listUsersId: [],
-  update: false,
 };
 
 const usersReducer = createSlice({
@@ -52,11 +48,10 @@ const usersReducer = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    [deleteUsers.fulfilled.type]: (state, action: PayloadAction<string[]>) => {
-      state.users = state.users.filter((user) => !action.payload.includes(String(user.id)));
+    [deleteUsers.fulfilled.type]: (state, action: PayloadAction<number[]>) => {
+      state.users = state.users.filter((user) => !action.payload.includes(user.id));
       state.loading = false;
       state.error = '';
-      state.update = !state.update;
     },
     [deleteUsers.pending.type]: (state) => {
       state.loading = true;

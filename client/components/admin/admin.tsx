@@ -34,12 +34,14 @@ interface Data {
 const Admin: React.FC = () => {
   const dispatch = useAppDispatch();
   const users: IUser[] = useAppSelector((state) => state.usersReducer.users);
-  const update: boolean = useAppSelector((state) => state.usersReducer.update);
 
   useEffect(() => {
     dispatch(getUsers());
+  }, []);
+
+  useEffect(() => {
     setSelected([]);
-  }, [update]);
+  }, [users]);
 
   function createData(id: number, login: string, role: string, createdAt: string): Data {
     return {
