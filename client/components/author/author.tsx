@@ -3,12 +3,12 @@ import '@styles/Author';
 import Box from '@mui/material/Box';
 import React from 'react';
 
-import AppMenu from './menu';
+import AppBarMenu from './menu';
 
 const Author: React.FC = () => {
   return (
     <Box className="containerAuthor">
-      <AppMenu />
+      <AppBarMenu />
     </Box>
   );
 };
