@@ -4,6 +4,7 @@ import endpoints from '../constants/endpoints';
 config();
 import cors from 'cors';
 import express, { json, Request, Response, static as stat } from 'express';
+import fileUpload from 'express-fileupload';
 import path from 'path';
 
 import router from '../server/routes/index';
@@ -15,6 +16,7 @@ const PORT = process.env.PORT;
 const app = express();
 app.use(cors());
 app.use(json());
+app.use(fileUpload({}));
 app.use(endpoints.authorization, router);
 app.use(stat(path.resolve(__dirname, 'static')));
 app.use(errorHandler);

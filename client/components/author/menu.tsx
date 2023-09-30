@@ -25,7 +25,8 @@ const AppBarMenu: FC = () => {
   };
 
   const upLoadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.files[0]);
+    const data = new FormData();
+    data.append('file', event.target.files[0]);
   };
 
   return (

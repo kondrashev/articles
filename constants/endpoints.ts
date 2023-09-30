@@ -5,4 +5,6 @@ export default {
   addUser: '/add/user',
   getUsers: '/get/users',
   deleteUsers: '/delete/users',
+  authorRouter: '/author',
+  uploadFile: '/upload/file',
 };
