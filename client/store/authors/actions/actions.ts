@@ -2,13 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import endpoints from '../../../../constants/endpoints';
 
-interface IFile {
-  fileName: string;
-}
-
-export const upLoadFile = createAsyncThunk<IFile, string | Blob, { rejectValue: string }>('author/upLoadFile', async (IData, { rejectWithValue }) => {
+export const upLoadFile = createAsyncThunk<string, Blob, { rejectValue: string }>('author/upLoadFile', async (data, { rejectWithValue }) => {
   const formData = new FormData();
-  formData.append('file', IData);
+  formData.append('file', data);
   const response = await fetch(`${endpoints.authorRouter}${endpoints.uploadFile}`, {
     method: 'POST',
     headers: { Authorization: localStorage.token },
@@ -17,6 +13,6 @@ export const upLoadFile = createAsyncThunk<IFile, string | Blob, { rejectValue: 
   if (!response.ok) {
     return rejectWithValue(`Error from server №${response.status} ${response.statusText}!!!`);
   }
-  const fileName: Promise<IFile> = response.json();
+  const fileName: Promise<string> = response.json();
   return fileName;
 });

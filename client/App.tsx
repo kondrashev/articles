@@ -1,7 +1,7 @@
 import '@styles/App';
 
 import Box from '@mui/material/Box';
-import React from 'react';
+import React, { FC } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -15,7 +15,7 @@ import { setupStore } from './store';
 
 const store = setupStore();
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
     <Provider store={store}>
       <AppContextPovider>

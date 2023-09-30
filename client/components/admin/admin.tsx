@@ -18,7 +18,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { visuallyHidden } from '@mui/utils';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 
 import { IUser } from '../../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -31,7 +31,7 @@ interface Data {
   createdAt: string;
 }
 
-const Admin: React.FC = () => {
+const Admin: FC = () => {
   const dispatch = useAppDispatch();
   const users: IUser[] = useAppSelector((state) => state.usersReducer.users);
 
