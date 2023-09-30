@@ -10,23 +10,25 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { ChangeEvent, FC } from 'react';
 
-import { useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { upLoadFile } from '../../store/authors/actions/actions';
 
 const pages = ['Add article', 'Logout'];
 
 const AppBarMenu: FC = () => {
+  const dispatch = useAppDispatch();
   const Input = styled('input')({
     display: 'none',
   });
   const login: string = useAppSelector((state) => state.usersReducer.user.login);
+  const fileName: string = useAppSelector((state) => state.authorsReducer.fileName);
 
   const handleCloseNavMenu = (page: string) => {
     console.log(page);
   };
 
-  const upLoadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const data = new FormData();
-    data.append('file', event.target.files[0]);
+  const loadUpFile = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(upLoadFile(event.target.files[0]));
   };
 
   return (
@@ -59,7 +61,7 @@ const AppBarMenu: FC = () => {
                 accept="jpg/*"
                 id="contained-button-file"
                 type="file"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => upLoadFile(event)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => loadUpFile(event)}
               />
               <Button sx={{ my: 2, color: 'white', display: 'block' }} component="span">
                 Add avatar
@@ -73,7 +75,7 @@ const AppBarMenu: FC = () => {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <IconButton>
-              <Avatar src="images/avatar.jpg" />
+              <Avatar src={fileName} />
             </IconButton>
           </Box>
         </Toolbar>

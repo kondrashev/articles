@@ -6,7 +6,7 @@ class AuthorController {
     try {
       const file = req.files['file'];
       file.mv(path.resolve(__dirname, '..', 'static/images', file.name));
-      return res.json(file.name);
+      return res.json(`images/${file.name}`);
     } catch (error) {
       next(error);
     }

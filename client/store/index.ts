@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import authorsReducer from './authors/reducers';
 import usersReducer from './users/reducers/index';
 
 const rootReducer = combineReducers({
   usersReducer,
+  authorsReducer,
 });
 
 export const setupStore = () => {
