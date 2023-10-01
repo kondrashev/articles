@@ -8,4 +8,5 @@ export default {
   uploadFile: '/upload/file',
   authorRouter: '/author',
   addArticle: '/add/article',
+  getArticles: '/get/articles',
 };
