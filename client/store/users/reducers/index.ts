@@ -63,8 +63,8 @@ const usersReducer = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    [upLoadFile.fulfilled.type]: (state, action: PayloadAction<string>) => {
-      state.fileName = action.payload;
+    [upLoadFile.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+      state.user = action.payload;
       state.loading = false;
       state.error = '';
     },

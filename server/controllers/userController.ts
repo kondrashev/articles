@@ -32,7 +32,7 @@ class UserController {
       return next(res.json('Incorrect password!!!'));
     }
     const token: string = generateJWT(user.login, user.role || 'AUTHOR');
-    const getUser = { login: user.login, role: user.role, token };
+    const getUser = { login: user.login, role: user.role, token, avatar: user.avatar };
     return res.json(getUser);
   }
 
@@ -67,9 +67,12 @@ class UserController {
 
   async uploadFile(req: Request, res: Response, next: NextFunction) {
     try {
+      const { login } = req.body;
       const file = req.files['file'];
       file.mv(path.resolve(__dirname, '..', 'static/images', file.name));
-      return res.json(`images/${file.name}`);
+      await User.update({ avatar: `images/${file.name}` }, { where: { login } });
+      const user: IUser = await User.findOne({ where: { login } });
+      return res.json(user);
     } catch (error) {
       next(error);
     }

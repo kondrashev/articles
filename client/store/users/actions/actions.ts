@@ -47,9 +47,15 @@ export const getUsers = createAsyncThunk<IUser[]>('user/getUsers', async () => {
   return users;
 });
 
-export const upLoadFile = createAsyncThunk<string, Blob, { rejectValue: string }>('author/upLoadFile', async (data, { rejectWithValue }) => {
+interface IData {
+  login: string;
+  file: Blob;
+}
+
+export const upLoadFile = createAsyncThunk<IUser, IData, { rejectValue: string }>('user/upLoadFile', async ({ login, file }, { rejectWithValue }) => {
   const formData = new FormData();
-  formData.append('file', data);
+  formData.append('login', login);
+  formData.append('file', file);
   const response = await fetch(`${endpoints.userRouter}${endpoints.uploadFile}`, {
     method: 'POST',
     headers: { Authorization: localStorage.token },
@@ -58,6 +64,6 @@ export const upLoadFile = createAsyncThunk<string, Blob, { rejectValue: string }
   if (!response.ok) {
     return rejectWithValue(`Error from server №${response.status} ${response.statusText}!!!`);
   }
-  const fileName: Promise<string> = response.json();
-  return fileName;
+  const user: Promise<IUser> = response.json();
+  return user;
 });

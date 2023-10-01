@@ -6,6 +6,8 @@ export interface IUser {
   token?: string;
   registration?: boolean;
   createdAt?: string;
+  updatedAt?: string;
+  avatar?: string;
 }
 
 export interface IArticle {

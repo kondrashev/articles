@@ -10,6 +10,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { ChangeEvent, FC } from 'react';
 
+import { IUser } from '../../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { upLoadFile } from '../../store/users/actions/actions';
 
@@ -20,15 +21,15 @@ const AppBarMenu: FC = () => {
   const Input = styled('input')({
     display: 'none',
   });
-  const login: string = useAppSelector((state) => state.usersReducer.user.login);
-  const fileName: string = useAppSelector((state) => state.authorsReducer.fileName);
+  const { login, avatar }: IUser = useAppSelector((state) => state.usersReducer.user);
 
   const handleCloseNavMenu = (page: string) => {
     console.log(page);
   };
 
   const loadUpFile = (event: ChangeEvent<HTMLInputElement>) => {
-    dispatch(upLoadFile(event.target.files[0]));
+    const data = { login, file: event.target.files[0] };
+    dispatch(upLoadFile(data));
   };
 
   return (
@@ -75,7 +76,7 @@ const AppBarMenu: FC = () => {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <IconButton>
-              <Avatar src={fileName} />
+              <Avatar src={avatar} />
             </IconButton>
           </Box>
         </Toolbar>
