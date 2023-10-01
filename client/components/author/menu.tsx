@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import React, { ChangeEvent, FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { upLoadFile } from '../../store/authors/actions/actions';
+import { upLoadFile } from '../../store/users/actions/actions';
 
 const pages = ['Add article', 'Logout'];
 

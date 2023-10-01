@@ -1,6 +1,7 @@
 import { compareSync, hash } from 'bcryptjs';
 import { NextFunction, Request, Response } from 'express';
 import { JwtPayload, sign } from 'jsonwebtoken';
+import path from 'path';
 
 import { IUser } from '../../constants/constants';
 import User from '../database/models/user';
@@ -62,6 +63,16 @@ class UserController {
       await User.destroy({ where: { id } });
     });
     return res.json(listId);
+  }
+
+  async uploadFile(req: Request, res: Response, next: NextFunction) {
+    try {
+      const file = req.files['file'];
+      file.mv(path.resolve(__dirname, '..', 'static/images', file.name));
+      return res.json(`images/${file.name}`);
+    } catch (error) {
+      next(error);
+    }
   }
 }
 export default new UserController();

@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IUser } from '../../../../constants/constants';
-import { checkAuthorization, deleteUsers, getUsers } from '../actions/actions';
+import { checkAuthorization, deleteUsers, getUsers, upLoadFile } from '../actions/actions';
 
 interface userState {
   loading: boolean;
   error: string;
   user: IUser;
   users: IUser[];
+  fileName: string;
 }
 
 const initialState: userState = {
@@ -15,6 +16,7 @@ const initialState: userState = {
   error: '',
   user: { id: 0, login: 'none', password: '', role: 'AUTHOR' },
   users: [],
+  fileName: '',
 };
 
 const usersReducer = createSlice({
@@ -58,6 +60,19 @@ const usersReducer = createSlice({
       state.error = '';
     },
     [deleteUsers.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [upLoadFile.fulfilled.type]: (state, action: PayloadAction<string>) => {
+      state.fileName = action.payload;
+      state.loading = false;
+      state.error = '';
+    },
+    [upLoadFile.pending.type]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [upLoadFile.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },
