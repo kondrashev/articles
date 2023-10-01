@@ -5,5 +5,5 @@ import endpoints from '../../constants/endpoints';
 const router = Router();
 import AuthorController from '../controllers/authorController';
 import checkRole from '../middleware/checkRoleMiddleware';
-router.post(endpoints.uploadFile, checkRole('AUTHOR'), AuthorController.uploadFile);
+router.post(endpoints.addArticle, checkRole('AUTHOR'), AuthorController.addArticle);
 export default router;

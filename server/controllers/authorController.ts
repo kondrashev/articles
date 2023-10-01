@@ -1,15 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
-import path from 'path';
+
+import { IArticle } from '../../constants/constants';
+import Article from '../database/models/article';
 
 class AuthorController {
-  async uploadFile(req: Request, res: Response, next: NextFunction) {
-    try {
-      const file = req.files['file'];
-      file.mv(path.resolve(__dirname, '..', 'static/images', file.name));
-      return res.json(`images/${file.name}`);
-    } catch (error) {
-      next(error);
+  async addArticle(req: Request, res: Response, next: NextFunction) {
+    const { avatar, login, title, text, userId } = req.body;
+    if (!avatar || !login || !title || !text) {
+      return next(res.json('Incorrect fields!!!'));
     }
+    const article: IArticle = await Article.create({ avatar, author: login, title, text, userId });
+    return res.json(article);
   }
 }
 

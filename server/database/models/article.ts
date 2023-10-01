@@ -1,18 +1,16 @@
 import { DataTypes } from 'sequelize';
 
+import { IArticle } from '../../../constants/constants';
 import connection from '../connection';
 
-interface IUserArticle {
-  id: number;
-  author: string;
-  title: string;
-  text: Text;
+interface IUserArticle extends IArticle {
   hasMany;
   belongsTo;
   findOne;
   findAll;
   create;
   destroy;
+  update;
 }
 
 const Article: IUserArticle = connection.define('articles', {
