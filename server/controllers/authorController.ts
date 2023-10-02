@@ -29,6 +29,13 @@ class AuthorController {
     });
     return res.json(listId);
   }
+
+  async updateArticle(req: Request, res: Response) {
+    const { id, title, text } = req.body;
+    await Article.update({ title, text }, { where: { id } });
+    const article: IArticle = await Article.findOne({ where: { id } });
+    return res.json(article);
+  }
 }
 
 export default new AuthorController();
