@@ -7,4 +7,5 @@ import AuthorController from '../controllers/authorController';
 import checkRole from '../middleware/checkRoleMiddleware';
 router.post(endpoints.addArticle, checkRole('AUTHOR'), AuthorController.addArticle);
 router.get(endpoints.getArticles, checkRole('AUTHOR'), AuthorController.getArticles);
+router.post(endpoints.deleteArticles, checkRole('AUTHOR'), AuthorController.deleteArticles);
 export default router;

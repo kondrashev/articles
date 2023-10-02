@@ -9,4 +9,6 @@ export default {
   authorRouter: '/author',
   addArticle: '/add/article',
   getArticles: '/get/articles',
+  deleteArticles: '/delete/articles',
+  updateArticle: '/update/article',
 };
