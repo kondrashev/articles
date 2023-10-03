@@ -1,4 +1,4 @@
-import '@styles/Author';
+import '@styles/author';
 
 import Box from '@mui/material/Box';
 import React, { FC } from 'react';

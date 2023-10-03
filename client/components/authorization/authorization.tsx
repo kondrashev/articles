@@ -1,4 +1,4 @@
-import '@styles/AuthorizationForm';
+import '@styles/authorizationForm';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
