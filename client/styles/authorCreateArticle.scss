@@ -1,0 +1,36 @@
+.containerCreateArticle{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: auto;
+    height: 600px;
+    padding-top: 20px;
+
+    .containerTitle{
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .title{
+            width: 600px;
+            height: 30px;
+            margin-top: -14px;
+            margin-left: 10px;
+        }
+
+        .title :hover{
+            cursor: pointer;
+        }
+    
+        .avatar{
+            width: 50px;
+            height: 50px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+    }
+}

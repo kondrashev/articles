@@ -4,7 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -71,9 +70,7 @@ const AppBarMenu: FC = () => {
             </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton>
-              <Avatar src={avatar} />
-            </IconButton>
+            <Avatar src={avatar} />
           </Box>
         </Toolbar>
       </Container>
