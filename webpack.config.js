@@ -3,7 +3,7 @@ const path = require('path');
 require('babel-polyfill');
 
 module.exports = {
-  entry: ['babel-polyfill', './client/App.tsx'],
+  entry: ['babel-polyfill', './client/app.tsx'],
   devtool: 'sourcemaps',
   cache: true,
   mode: 'development',

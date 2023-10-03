@@ -14,8 +14,6 @@ import { IUser } from '../../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { upLoadFile } from '../../store/users/actions/actions';
 
-const pages = ['Add article', 'Logout'];
-
 const AppBarMenu: FC = () => {
   const dispatch = useAppDispatch();
   const Input = styled('input')({
@@ -23,8 +21,8 @@ const AppBarMenu: FC = () => {
   });
   const { login, avatar }: IUser = useAppSelector((state) => state.usersReducer.user);
 
-  const handleCloseNavMenu = (page: string) => {
-    console.log(page);
+  const handleCloseNavMenu = () => {
+    location.href = '/panel';
   };
 
   const loadUpFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -68,11 +66,9 @@ const AppBarMenu: FC = () => {
                 Add avatar
               </Button>
             </label>
-            {pages.map((page) => (
-              <Button key={page} onClick={() => handleCloseNavMenu(page)} sx={{ my: 2, color: 'white', display: 'block' }}>
-                {page}
-              </Button>
-            ))}
+            <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+              Logout
+            </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <IconButton>
