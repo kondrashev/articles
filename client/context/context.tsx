@@ -11,6 +11,7 @@ interface IValuesTypes {
   registration: boolean;
   titleEditor: string;
   textEditor: string;
+  isShowEditor: boolean;
 }
 interface IValues {
   values: IValuesTypes;
@@ -30,6 +31,7 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     registration: false,
     titleEditor: '',
     textEditor: 'Add text',
+    isShowEditor: false,
   });
   const value = {
     values,

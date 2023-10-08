@@ -1,5 +1,6 @@
 import '@styles/authorCreateArticle';
 
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -14,6 +15,12 @@ import EditorTool from './editorTool';
 const CreateArticle: FC = () => {
   const { values, setValues } = useAppContext();
   const { avatar, login, id }: IUser = useAppSelector((state) => state.usersReducer.user);
+  const closeForms = () => {
+    setValues({
+      ...values,
+      isShowEditor: false,
+    });
+  };
 
   const addArticle = () => {
     const data = {
@@ -23,6 +30,10 @@ const CreateArticle: FC = () => {
       text: values.textEditor,
       userId: id,
     };
+    setValues({
+      ...values,
+      isShowEditor: false,
+    });
   };
 
   const onChangeTitleArticle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,17 +43,43 @@ const CreateArticle: FC = () => {
     });
   };
 
+  const showEditorTool = () => {
+    setValues({
+      ...values,
+      isShowEditor: true,
+    });
+  };
+
   return (
-    <Box className="containerCreateArticle">
-      <Box className="containerTitle">
-        <Avatar className="avatar" src={avatar} />
-        <TextField label="Title" variant="outlined" className="title" placeholder="Add titel article" onChange={onChangeTitleArticle} />
+    <ClickAwayListener onClickAway={closeForms}>
+      <Box
+        className="containerCreateArticle"
+        sx={{
+          height: values.isShowEditor ? '400px' : '50px',
+          transition: 'height .7s',
+        }}
+      >
+        <Box className="containerTitle">
+          <Avatar className="avatar" src={avatar} />
+          <TextField
+            label="Title"
+            variant="outlined"
+            className="title"
+            placeholder="Add titel article"
+            onChange={onChangeTitleArticle}
+            onClick={showEditorTool}
+          />
+        </Box>
+        {values.isShowEditor && (
+          <Box className="containerEditorTool">
+            <EditorTool />
+            <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={addArticle}>
+              Add article
+            </Button>
+          </Box>
+        )}
       </Box>
-      <EditorTool />
-      <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={addArticle}>
-        Add article
-      </Button>
-    </Box>
+    </ClickAwayListener>
   );
 };
 

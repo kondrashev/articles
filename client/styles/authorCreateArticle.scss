@@ -4,7 +4,6 @@
     justify-content: center;
     align-items: center;
     width: auto;
-    height: auto;
     padding-top: 20px;
 
     .containerTitle{
@@ -40,5 +39,13 @@
         margin-top: 20px;
         margin-left: 10px;
         align-self: flex-start;
+    }
+    .containerEditorTool{
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }

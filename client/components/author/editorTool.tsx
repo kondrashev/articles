@@ -18,8 +18,6 @@ const EditorTool: FC = () => {
 
   const imageUploadCallback = (file) => new Promise((resolve) => getFileBase64(file, (data) => resolve({ data: { link: data } })));
 
-  console.log(values.textEditor);
-
   return (
     <Editor
       placeholder={'Add article'}
