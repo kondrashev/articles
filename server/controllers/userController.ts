@@ -32,7 +32,7 @@ class UserController {
       return next(res.json('Incorrect password!!!'));
     }
     const token: string = generateJWT(user.login, user.role || 'AUTHOR');
-    const getUser = { login: user.login, role: user.role, token, avatar: user.avatar };
+    const getUser = { login: user.login, role: user.role, token, avatar: user.avatar, id: user.id };
     return res.json(getUser);
   }
 

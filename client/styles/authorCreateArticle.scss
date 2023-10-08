@@ -1,10 +1,10 @@
 .containerCreateArticle{
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     width: auto;
-    height: 600px;
+    height: auto;
     padding-top: 20px;
 
     .containerTitle{
@@ -32,5 +32,13 @@
             margin-top: 10px;
             margin-left: 10px;
         }
+    }
+
+    .buttonEditor{
+        width: 200px;
+        height: 50px;
+        margin-top: 20px;
+        margin-left: 10px;
+        align-self: flex-start;
     }
 }

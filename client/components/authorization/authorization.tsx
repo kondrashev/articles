@@ -48,12 +48,6 @@ const Authorization: FC = () => {
     });
   }, [values.showErrorForm]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IUser>();
-
   const visiblePassword = () => {
     setValues({
       ...values,
@@ -76,6 +70,12 @@ const Authorization: FC = () => {
       registration: !values.registration,
     });
   };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IUser>();
 
   return (
     <form className="formAuthorization" onSubmit={handleSubmit(authorizationCheck)}>

@@ -16,7 +16,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', 'css', '.scss'],
     alias: {
       '@styles': path.resolve(__dirname, 'client/styles'),
     },
@@ -33,7 +33,7 @@ module.exports = {
         },
       },
       {
-        test: /\.s[ac]ss$/,
+        test: /\.(css|s[ac]ss)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
