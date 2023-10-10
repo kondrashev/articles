@@ -24,8 +24,7 @@ const CreateArticle: FC = () => {
   };
 
   const addArticle = () => {
-    if (!values.titleEditor || values.textEditor === 'Add text' || values.textEditor.length === 8) {
-      console.log('failed!!!');
+    if (!values.titleEditor || values.textEditor.length === 0 || values.textEditor.length === 8) {
     } else {
       const data = {
         avatar,
@@ -79,7 +78,7 @@ const CreateArticle: FC = () => {
           <Box className="containerEditorTool">
             {!values.titleEditor && <InputLabel className="inputErrorTitle">Title can not be empty!</InputLabel>}
             <EditorTool />
-            {values.textEditor === 'Add text' || values.textEditor.length === 8 ? (
+            {values.textEditor.length === 0 || values.textEditor.length === 8 ? (
               <InputLabel className="inputErrorEditor">Text can not be empty!</InputLabel>
             ) : null}
             <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={addArticle}>

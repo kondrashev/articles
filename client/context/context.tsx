@@ -30,7 +30,7 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     loginForm: '',
     registration: false,
     titleEditor: '',
-    textEditor: 'Add text',
+    textEditor: '',
     isShowEditor: false,
   });
   const value = {
