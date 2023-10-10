@@ -1,6 +1,7 @@
 import '@styles/authorCreateArticle';
 
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import { InputLabel } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -23,17 +24,21 @@ const CreateArticle: FC = () => {
   };
 
   const addArticle = () => {
-    const data = {
-      avatar,
-      login,
-      title: values.titleEditor,
-      text: values.textEditor,
-      userId: id,
-    };
-    setValues({
-      ...values,
-      isShowEditor: false,
-    });
+    if (!values.titleEditor || values.textEditor === 'Add text' || values.textEditor.length === 8) {
+      console.log('failed!!!');
+    } else {
+      const data = {
+        avatar,
+        login,
+        title: values.titleEditor,
+        text: values.textEditor,
+        userId: id,
+      };
+      setValues({
+        ...values,
+        isShowEditor: false,
+      });
+    }
   };
 
   const onChangeTitleArticle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +77,11 @@ const CreateArticle: FC = () => {
         </Box>
         {values.isShowEditor && (
           <Box className="containerEditorTool">
+            {!values.titleEditor && <InputLabel className="inputErrorTitle">Title can not be empty!</InputLabel>}
             <EditorTool />
+            {values.textEditor === 'Add text' || values.textEditor.length === 8 ? (
+              <InputLabel className="inputErrorEditor">Text can not be empty!</InputLabel>
+            ) : null}
             <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={addArticle}>
               Add article
             </Button>

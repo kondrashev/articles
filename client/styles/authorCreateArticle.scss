@@ -5,6 +5,7 @@
     align-items: center;
     width: auto;
     padding-top: 20px;
+    position: relative;
 
     .containerTitle{
         width: auto;
@@ -36,10 +37,11 @@
     .buttonEditor{
         width: 200px;
         height: 50px;
-        margin-top: 20px;
+        margin-top: 40px;
         margin-left: 10px;
         align-self: flex-start;
     }
+
     .containerEditorTool{
         width: auto;
         height: auto;
@@ -48,4 +50,21 @@
         justify-content: center;
         align-items: center;
     }
+
+    .inputErrorTitle{
+        position: absolute;
+        top:80px;
+        left: 80px;
+        width: auto;
+        color: red;
+    }
+
+    .inputErrorEditor{
+        position: absolute;
+        top:350px;
+        left: 80px;
+        width: auto;
+        color: red;
+    }
+
 }
