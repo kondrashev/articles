@@ -1,0 +1,39 @@
+.containerListArticles{
+    width: auto;
+
+    .containerHeaderArticle{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .authorArticle{
+            color: black;
+            text-transform: capitalize;
+        }
+
+        .dateArticle{
+            color: black;
+            margin-left: 50px;
+        }
+    }
+
+    .containerBodyArticle{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        margin-top: 10px;
+
+        .titleArticle{
+            color: black;
+            font-weight: bold;
+        }
+
+        .textArticle{
+            color: black;
+            margin-top: 10px;
+        }
+    }
+
+}

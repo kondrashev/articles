@@ -106,7 +106,7 @@ const Authorization: FC = () => {
           endAdornment={
             <InputAdornment position="end">
               <IconButton aria-label="toggle password visibility" onClick={visiblePassword} edge="end">
-                {values.isShowPassword ? <VisibilityOff /> : <Visibility />}
+                {!values.isShowPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
           }

@@ -1,0 +1,11 @@
+.itemDotsMenu{
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .iconField{
+        margin-right: 15px;
+    }
+}
