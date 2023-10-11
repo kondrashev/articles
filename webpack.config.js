@@ -1,9 +1,4 @@
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-
-const htmlPlugin = new HTMLWebpackPlugin({
-  template: './server/static/template/index.html',
-  filename: './index.html',
-});
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const path = require('path');
 
@@ -17,7 +12,14 @@ module.exports = {
   output: {
     filename: './server/static/bundle.js',
   },
-  plugins: [htmlPlugin],
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: './server/static/template/index.html',
+      filename: 'index.html',
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', 'css', '.scss'],
     alias: {
