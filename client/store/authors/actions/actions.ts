@@ -17,7 +17,7 @@ export const addArticle = createAsyncThunk<IArticle, IDataArticle, { rejectValue
     const response = await fetch(`${endpoints.authorRouter}${endpoints.addArticle}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: localStorage.token },
-      body: JSON.stringify({ avatar, author: login, title, text, userId }),
+      body: JSON.stringify({ avatar, login, title, text, userId }),
     });
     if (!response.ok) {
       return rejectWithValue(`Error from server №${response.status} ${response.statusText}!!!`);

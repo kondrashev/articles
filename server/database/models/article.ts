@@ -16,7 +16,7 @@ interface IUserArticle extends IArticle {
 const Article: IUserArticle = connection.define('articles', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   avatar: { type: DataTypes.STRING },
-  author: { type: DataTypes.STRING, allowNull: false },
+  login: { type: DataTypes.STRING },
   title: { type: DataTypes.STRING },
   text: { type: DataTypes.STRING },
 });

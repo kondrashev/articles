@@ -7,7 +7,7 @@ class AuthorController {
   async getArticles(req: Request, res: Response, next: NextFunction) {
     const { userId } = req.query;
     if (!userId) {
-      return next(res.json('Login is faild!'));
+      return next(res.json('userId is faild!'));
     }
     const articles: IArticle[] = await Article.findAll({ where: { userId } });
     return res.json(articles);
@@ -17,7 +17,7 @@ class AuthorController {
     const { avatar, login, title, text, userId } = req.body;
     const article: IArticle = await Article.create({
       avatar: String(avatar),
-      author: String(login),
+      login: String(login),
       title: String(title),
       text: String(text),
       userId: Number(userId),

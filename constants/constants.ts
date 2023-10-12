@@ -13,7 +13,7 @@ export interface IUser {
 export interface IArticle {
   id: number;
   avatar: string;
-  author: string;
+  login: string;
   title: string;
   text: string;
   createdAt?: string;
