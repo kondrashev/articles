@@ -12,7 +12,11 @@ export interface IUser {
 
 export interface IArticle {
   id: number;
+  avatar: string;
   author: string;
   title: string;
   text: string;
+  createdAt?: string;
+  updatedAt?: string;
+  userId?: number;
 }

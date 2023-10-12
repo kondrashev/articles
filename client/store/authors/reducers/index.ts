@@ -1,17 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { upLoadFile } from '../actions/actions';
+import { IArticle } from '../../../../constants/constants';
+import { addArticle } from '../actions/actions';
 
 interface authorState {
   loading: boolean;
   error: string;
-  fileName: string;
+  article: IArticle;
+  articles: IArticle[];
 }
 
 const initialState: authorState = {
   loading: false,
   error: '',
-  fileName: '',
+  article: { id: 0, avatar: '', author: '', title: '', text: '' },
+  articles: [],
 };
 
 const authorsReducer = createSlice({
@@ -19,16 +22,16 @@ const authorsReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [upLoadFile.fulfilled.type]: (state, action: PayloadAction<string>) => {
-      state.fileName = action.payload;
+    [addArticle.fulfilled.type]: (state, action: PayloadAction<IArticle>) => {
+      state.articles = [...state.articles, action.payload];
       state.loading = false;
       state.error = '';
     },
-    [upLoadFile.pending.type]: (state) => {
+    [addArticle.pending.type]: (state) => {
       state.loading = true;
       state.error = '';
     },
-    [upLoadFile.rejected.type]: (state, action: PayloadAction<string>) => {
+    [addArticle.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },

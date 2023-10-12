@@ -13,12 +13,15 @@ class AuthorController {
     return res.json(articles);
   }
 
-  async addArticle(req: Request, res: Response, next: NextFunction) {
+  async addArticle(req: Request, res: Response) {
     const { avatar, login, title, text, userId } = req.body;
-    if (!avatar || !login || !title || !text) {
-      return next(res.json('Incorrect fields!!!'));
-    }
-    const article: IArticle = await Article.create({ avatar, author: login, title, text, userId });
+    const article: IArticle = await Article.create({
+      avatar: String(avatar),
+      author: String(login),
+      title: String(title),
+      text: String(text),
+      userId: Number(userId),
+    });
     return res.json(article);
   }
 

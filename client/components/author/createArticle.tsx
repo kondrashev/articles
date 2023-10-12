@@ -10,11 +10,13 @@ import React, { ChangeEvent, FC } from 'react';
 
 import { IUser } from '../../../constants/constants';
 import { useAppContext } from '../../context/context';
-import { useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { addArticle } from '../../store/authors/actions/actions';
 import EditorTool from './editorTool';
 
 const CreateArticle: FC = () => {
   const { values, setValues } = useAppContext();
+  const dispatch = useAppDispatch();
   const { avatar, login, id }: IUser = useAppSelector((state) => state.usersReducer.user);
   const closeForms = () => {
     setValues({
@@ -23,7 +25,7 @@ const CreateArticle: FC = () => {
     });
   };
 
-  const addArticle = () => {
+  const articleAdd = () => {
     if (!values.titleEditor || values.textEditor.length === 0 || values.textEditor.length === 8) {
     } else {
       const data = {
@@ -33,9 +35,12 @@ const CreateArticle: FC = () => {
         text: values.textEditor,
         userId: id,
       };
+      dispatch(addArticle(data));
       setValues({
         ...values,
         isShowEditor: false,
+        titleEditor: '',
+        textEditor: '',
       });
     }
   };
@@ -69,6 +74,7 @@ const CreateArticle: FC = () => {
             label="Title"
             variant="outlined"
             className="title"
+            value={values.titleEditor}
             placeholder="Add titel article"
             onChange={onChangeTitleArticle}
             onClick={showEditorTool}
@@ -81,7 +87,7 @@ const CreateArticle: FC = () => {
             {values.textEditor.length === 0 || values.textEditor.length === 8 ? (
               <InputLabel className="inputErrorEditor">Text can not be empty!</InputLabel>
             ) : null}
-            <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={addArticle}>
+            <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={articleAdd}>
               Add article
             </Button>
           </Box>
