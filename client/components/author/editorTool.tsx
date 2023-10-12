@@ -2,6 +2,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import { ContentState, convertToRaw, EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 import React, { FC } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 
@@ -9,6 +10,14 @@ import { useAppContext } from '../../context/context';
 
 const EditorTool: FC = () => {
   const { values, setValues } = useAppContext();
+
+  const htmlToDraftBlocks = (html) => {
+    const blocksFromHtml = htmlToDraft(html);
+    const { contentBlocks, entityMap } = blocksFromHtml;
+    const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+    const editorState = EditorState.createWithContent(contentState);
+    return editorState;
+  };
 
   const getFileBase64 = (file, callback) => {
     const reader = new FileReader();
@@ -21,7 +30,7 @@ const EditorTool: FC = () => {
   return (
     <Editor
       placeholder={'Add article'}
-      defaultEditorState={EditorState.createWithContent(ContentState.createFromText(String(values.textEditor)))}
+      defaultEditorState={htmlToDraftBlocks(values.textEditor)}
       onEditorStateChange={(newState) => {
         setValues({
           ...values,

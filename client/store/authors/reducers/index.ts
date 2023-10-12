@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IArticle } from '../../../../constants/constants';
-import { addArticle } from '../actions/actions';
+import { addArticle, getArticles } from '../actions/actions';
 
 interface authorState {
   loading: boolean;
@@ -32,6 +32,19 @@ const authorsReducer = createSlice({
       state.error = '';
     },
     [addArticle.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [getArticles.fulfilled.type]: (state, action: PayloadAction<IArticle[]>) => {
+      state.articles = action.payload;
+      state.loading = false;
+      state.error = '';
+    },
+    [getArticles.pending.type]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [getArticles.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },
