@@ -18,18 +18,18 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { getArticles } from '../../store/authors/actions/actions';
 import DotsMenu from './dotsMenu';
 
+export const htmlToDraftBlocks = (html) => {
+  const blocksFromHtml = htmlToDraft(html);
+  const { contentBlocks, entityMap } = blocksFromHtml;
+  const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+  const editorState = EditorState.createWithContent(contentState);
+  return editorState;
+};
+
 const ListArticles: FC = () => {
   const { id }: IUser = useAppSelector((state) => state.usersReducer.user);
   const dispatch = useAppDispatch();
   const articles: IArticle[] = useAppSelector((state) => state.authorsReducer.articles);
-
-  const htmlToDraftBlocks = (html) => {
-    const blocksFromHtml = htmlToDraft(html);
-    const { contentBlocks, entityMap } = blocksFromHtml;
-    const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-    const editorState = EditorState.createWithContent(contentState);
-    return editorState;
-  };
 
   useEffect(() => {
     dispatch(getArticles(id));
