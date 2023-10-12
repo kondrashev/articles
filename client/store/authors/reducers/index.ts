@@ -22,19 +22,6 @@ const authorsReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [addArticle.fulfilled.type]: (state, action: PayloadAction<IArticle>) => {
-      state.articles = [...state.articles, action.payload];
-      state.loading = false;
-      state.error = '';
-    },
-    [addArticle.pending.type]: (state) => {
-      state.loading = true;
-      state.error = '';
-    },
-    [addArticle.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
     [getArticles.fulfilled.type]: (state, action: PayloadAction<IArticle[]>) => {
       state.articles = action.payload;
       state.loading = false;
@@ -45,6 +32,19 @@ const authorsReducer = createSlice({
       state.error = '';
     },
     [getArticles.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [addArticle.fulfilled.type]: (state, action: PayloadAction<IArticle>) => {
+      state.articles = [...state.articles, action.payload];
+      state.loading = false;
+      state.error = '';
+    },
+    [addArticle.pending.type]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [addArticle.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },
