@@ -58,3 +58,23 @@ export const updateArticle = createAsyncThunk<IArticle, IUpdateDataArticle, { re
     return article;
   },
 );
+
+interface listId {
+  listId: number[];
+}
+
+export const deleteArticles = createAsyncThunk<listId, listId, { rejectValue: string }>(
+  'author/deleteArticles',
+  async (listId, { rejectWithValue }) => {
+    const response = await fetch(`${endpoints.authorRouter}${endpoints.deleteArticles}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: localStorage.token },
+      body: JSON.stringify(listId),
+    });
+    if (!response.ok) {
+      return rejectWithValue(`Error from server №${response.status} ${response.statusText}!!!`);
+    }
+    const Ids: Promise<listId> = response.json();
+    return Ids;
+  },
+);

@@ -9,6 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import React, { FC, MouseEvent, useState } from 'react';
 
 import { useAppContext } from '../../context/context';
+import { useAppDispatch } from '../../hooks/hooks';
+import { deleteArticles } from '../../store/authors/actions/actions';
 
 const options = ['Edit article', 'Delete article'];
 
@@ -21,6 +23,7 @@ interface IProps {
 }
 
 const DotsMenu: FC<IProps> = (props) => {
+  const dispatch = useAppDispatch();
   const { values, setValues } = useAppContext();
   const { id, title, text }: IProps = props;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -39,6 +42,7 @@ const DotsMenu: FC<IProps> = (props) => {
         textEditor: text,
       });
     } else if (option === 'Delete article') {
+      dispatch(deleteArticles({ listId: [id] }));
     }
   };
 
