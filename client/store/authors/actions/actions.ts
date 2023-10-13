@@ -36,3 +36,25 @@ export const getArticles = createAsyncThunk<IArticle[], number>('author/getArtic
   const articles: Promise<IArticle[]> = response.json();
   return articles;
 });
+
+interface IUpdateDataArticle {
+  id: number;
+  title: string;
+  text: string;
+}
+
+export const updateArticle = createAsyncThunk<IArticle, IUpdateDataArticle, { rejectValue: string }>(
+  'author/updateArticle',
+  async ({ id, title, text }, { rejectWithValue }) => {
+    const response = await fetch(`${endpoints.authorRouter}${endpoints.updateArticle}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: localStorage.token },
+      body: JSON.stringify({ id, title, text }),
+    });
+    if (!response.ok) {
+      return rejectWithValue(`Error from server №${response.status} ${response.statusText}!!!`);
+    }
+    const article: Promise<IArticle> = response.json();
+    return article;
+  },
+);

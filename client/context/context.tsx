@@ -12,6 +12,8 @@ interface IValuesTypes {
   titleEditor: string;
   textEditor: string;
   isShowEditor: boolean;
+  isEditEditor: boolean;
+  articleId: number;
 }
 interface IValues {
   values: IValuesTypes;
@@ -32,6 +34,8 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     titleEditor: '',
     textEditor: '',
     isShowEditor: false,
+    isEditEditor: false,
+    articleId: 0,
   });
   const value = {
     values,

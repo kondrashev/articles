@@ -8,18 +8,38 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import React, { FC, MouseEvent, useState } from 'react';
 
+import { useAppContext } from '../../context/context';
+
 const options = ['Edit article', 'Delete article'];
 
 const ITEM_HEIGHT = 48;
 
-const DotsMenu: FC = () => {
+interface IProps {
+  id: number;
+  title: string;
+  text: string;
+}
+
+const DotsMenu: FC<IProps> = (props) => {
+  const { values, setValues } = useAppContext();
+  const { id, title, text }: IProps = props;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (option: string) => {
     setAnchorEl(null);
+    if (option === 'Edit article') {
+      setValues({
+        ...values,
+        articleId: id,
+        isEditEditor: true,
+        titleEditor: title,
+        textEditor: text,
+      });
+    } else if (option === 'Delete article') {
+    }
   };
 
   return (
@@ -50,7 +70,7 @@ const DotsMenu: FC = () => {
         }}
       >
         {options.map((option) => (
-          <MenuItem className="itemDotsMenu" key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+          <MenuItem className="itemDotsMenu" key={option} selected={option === 'Pyxis'} onClick={() => handleClose(option)}>
             {option === 'Edit article' ? <EditNoteIcon className="iconField" /> : <DeleteIcon className="iconField" />}
             {option}
           </MenuItem>

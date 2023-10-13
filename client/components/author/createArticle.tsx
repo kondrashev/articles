@@ -11,13 +11,14 @@ import React, { ChangeEvent, FC } from 'react';
 import { IUser } from '../../../constants/constants';
 import { useAppContext } from '../../context/context';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { addArticle } from '../../store/authors/actions/actions';
+import { addArticle, updateArticle } from '../../store/authors/actions/actions';
 import EditorTool from './editorTool';
 
 const CreateArticle: FC = () => {
   const { values, setValues } = useAppContext();
   const dispatch = useAppDispatch();
   const { avatar, login, id }: IUser = useAppSelector((state) => state.usersReducer.user);
+
   const closeForms = () => {
     setValues({
       ...values,
@@ -26,21 +27,31 @@ const CreateArticle: FC = () => {
   };
 
   const articleAdd = () => {
-    if (!values.titleEditor || values.textEditor.length === 0 || values.textEditor.length === 8) {
-    } else {
-      const data = {
-        avatar,
-        login,
-        title: values.titleEditor,
-        text: values.textEditor,
-        userId: id,
-      };
-      dispatch(addArticle(data));
+    if (values.titleEditor || !values.textEditor.length || values.textEditor.length !== 8) {
+      if (values.isEditEditor) {
+        const data = {
+          id: values.articleId,
+          title: values.titleEditor,
+          text: values.textEditor,
+        };
+        values.articleId && dispatch(updateArticle(data));
+      } else {
+        const data = {
+          avatar,
+          login,
+          title: values.titleEditor,
+          text: values.textEditor,
+          userId: id,
+        };
+        dispatch(addArticle(data));
+      }
       setValues({
         ...values,
         isShowEditor: false,
+        isEditEditor: false,
         titleEditor: '',
         textEditor: '',
+        articleId: 0,
       });
     }
   };
@@ -88,7 +99,7 @@ const CreateArticle: FC = () => {
               <InputLabel className="inputErrorEditor">Text can not be empty!</InputLabel>
             ) : null}
             <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={articleAdd}>
-              Add article
+              {!values.isEditEditor ? 'Add article' : 'Update article'}
             </Button>
           </Box>
         )}

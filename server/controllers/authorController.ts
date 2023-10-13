@@ -35,7 +35,7 @@ class AuthorController {
 
   async updateArticle(req: Request, res: Response) {
     const { id, title, text } = req.body;
-    await Article.update({ title, text }, { where: { id } });
+    await Article.update({ id: Number(id), title: String(title), text: String(text) }, { where: { id } });
     const article: IArticle = await Article.findOne({ where: { id } });
     return res.json(article);
   }
