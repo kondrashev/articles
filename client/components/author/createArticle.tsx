@@ -31,7 +31,7 @@ const CreateArticle: FC = () => {
   };
 
   const articleAdd = () => {
-    if (refEditor.current <= 2) {
+    if (refEditor.current <= 2 || !values.titleEditor || !values.textEditor.length || values.textEditor.length === 8) {
       setValues({
         ...values,
         isShowEditor: false,
@@ -40,37 +40,35 @@ const CreateArticle: FC = () => {
         textEditor: '',
         articleId: 0,
       });
+      refEditor.current = 0;
       return;
     }
-    if (values.titleEditor || !values.textEditor.length || values.textEditor.length !== 8) {
-      if (values.isEditEditor) {
-        const data = {
-          id: values.articleId,
-          title: values.titleEditor,
-          text: values.textEditor,
-        };
-        refEditor.current = 0;
-        values.articleId && dispatch(updateArticle(data));
-      } else {
-        const data = {
-          avatar,
-          login,
-          title: values.titleEditor,
-          text: values.textEditor,
-          userId: id,
-        };
-        refEditor.current = 0;
-        dispatch(addArticle(data));
-      }
-      setValues({
-        ...values,
-        isShowEditor: false,
-        isEditEditor: false,
-        titleEditor: '',
-        textEditor: '',
-        articleId: 0,
-      });
+    if (values.isEditEditor) {
+      const data = {
+        id: values.articleId,
+        title: values.titleEditor,
+        text: values.textEditor,
+      };
+      dispatch(updateArticle(data));
+    } else {
+      const data = {
+        avatar,
+        login,
+        title: values.titleEditor,
+        text: values.textEditor,
+        userId: id,
+      };
+      dispatch(addArticle(data));
     }
+    setValues({
+      ...values,
+      isShowEditor: false,
+      isEditEditor: false,
+      titleEditor: '',
+      textEditor: '',
+      articleId: 0,
+    });
+    refEditor.current = 0;
   };
 
   const onChangeTitleArticle = (e: ChangeEvent<HTMLInputElement>) => {

@@ -67,6 +67,7 @@ const ListArticles: FC = () => {
                         fontSize: '14px',
                         color: 'black',
                       }}
+                      readOnly={true}
                       wrapperStyle={{
                         width: 'auto',
                         borderRadius: '2px',
