@@ -8,15 +8,13 @@ interface userState {
   error: string;
   user: IUser;
   users: IUser[];
-  fileName: string;
 }
 
 const initialState: userState = {
   loading: false,
   error: '',
-  user: { id: 0, login: 'none', password: '', role: 'AUTHOR' },
+  user: { id: 0, avatar: '', login: 'none', password: '', role: 'AUTHOR' },
   users: [],
-  fileName: '',
 };
 
 const usersReducer = createSlice({

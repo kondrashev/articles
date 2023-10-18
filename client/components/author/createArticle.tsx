@@ -6,7 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC, useEffect } from 'react';
 
 import { IUser } from '../../../constants/constants';
 import { useAppContext } from '../../context/context';
@@ -15,18 +15,33 @@ import { addArticle, updateArticle } from '../../store/authors/actions/actions';
 import EditorTool from './editorTool';
 
 const CreateArticle: FC = () => {
-  const { values, setValues } = useAppContext();
+  const { values, setValues, refEditor } = useAppContext();
   const dispatch = useAppDispatch();
   const { avatar, login, id }: IUser = useAppSelector((state) => state.usersReducer.user);
+
+  useEffect(() => {
+    refEditor.current++;
+  }, [values.titleEditor, values.textEditor]);
 
   const closeForms = () => {
     setValues({
       ...values,
-      isShowEditor: false,
+      isShowEditor: values.isEditEditor && true,
     });
   };
 
   const articleAdd = () => {
+    if (refEditor.current <= 2) {
+      setValues({
+        ...values,
+        isShowEditor: false,
+        isEditEditor: false,
+        titleEditor: '',
+        textEditor: '',
+        articleId: 0,
+      });
+      return;
+    }
     if (values.titleEditor || !values.textEditor.length || values.textEditor.length !== 8) {
       if (values.isEditEditor) {
         const data = {
@@ -34,6 +49,7 @@ const CreateArticle: FC = () => {
           title: values.titleEditor,
           text: values.textEditor,
         };
+        refEditor.current = 0;
         values.articleId && dispatch(updateArticle(data));
       } else {
         const data = {
@@ -43,6 +59,7 @@ const CreateArticle: FC = () => {
           text: values.textEditor,
           userId: id,
         };
+        refEditor.current = 0;
         dispatch(addArticle(data));
       }
       setValues({
@@ -99,7 +116,7 @@ const CreateArticle: FC = () => {
               <InputLabel className="inputErrorEditor">Text can not be empty!</InputLabel>
             ) : null}
             <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={articleAdd}>
-              {!values.isEditEditor ? 'Add article' : 'Update article'}
+              {values.isEditEditor ? 'Update' : 'Add'}
             </Button>
           </Box>
         )}

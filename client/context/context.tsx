@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import React, { createContext, ReactNode, useContext, useRef, useState } from 'react';
 interface IProps {
   children: ReactNode;
 }
@@ -17,7 +17,8 @@ interface IValuesTypes {
 }
 interface IValues {
   values: IValuesTypes;
-  setValues: (values) => void;
+  setValues: (values: IValuesTypes) => void;
+  refEditor;
 }
 
 export const AppContext = createContext<null | IValues>(null);
@@ -37,9 +38,11 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     isEditEditor: false,
     articleId: 0,
   });
+  const refEditor = useRef(0);
   const value = {
     values,
     setValues,
+    refEditor,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

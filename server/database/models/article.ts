@@ -18,7 +18,7 @@ const Article: IUserArticle = connection.define('articles', {
   avatar: { type: DataTypes.STRING },
   login: { type: DataTypes.STRING },
   title: { type: DataTypes.STRING },
-  text: { type: DataTypes.STRING },
+  text: { type: DataTypes.JSON },
 });
 
 export default Article;
