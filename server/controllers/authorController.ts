@@ -9,7 +9,10 @@ class AuthorController {
     if (!userId) {
       return next(res.json('userId is faild!'));
     }
-    const articles: IArticle[] = await Article.findAll({ where: { userId } });
+    const articles: IArticle[] = await Article.findAll({
+      where: { userId },
+      order: [['id', 'DESC']],
+    });
     return res.json(articles);
   }
 

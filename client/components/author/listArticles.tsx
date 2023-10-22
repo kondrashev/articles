@@ -29,7 +29,8 @@ export const htmlToDraftBlocks = (html) => {
 const ListArticles: FC = () => {
   const { id }: IUser = useAppSelector((state) => state.usersReducer.user);
   const dispatch = useAppDispatch();
-  const articles: IArticle[] = useAppSelector((state) => state.authorsReducer.articles);
+  const articles: string = useAppSelector((state) => JSON.stringify(state.authorsReducer.articles));
+  const sortArticles: IArticle[] = JSON.parse(articles);
 
   useEffect(() => {
     dispatch(getArticles(id));
@@ -37,51 +38,53 @@ const ListArticles: FC = () => {
 
   return (
     <List className="containerListArticles">
-      {articles.map((article, index) => {
-        return (
-          <Box key={index}>
-            <Divider variant="inset" component="li" />
-            <ListItem alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar src={article.avatar} />
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <Box className="containerHeaderArticle">
-                    <Typography className="authorArticle">
-                      <b>Author</b>: {article.login}
-                    </Typography>
-                    <Typography className="dateArticle">
-                      <b>Published</b>: {`${new Date(article.updatedAt).toLocaleDateString('uk-UK')}p.`}
-                    </Typography>
-                    <DotsMenu id={article.id} title={article.title} text={article.text} />
-                  </Box>
-                }
-                secondary={
-                  <Box className="containerBodyArticle">
-                    <Typography className="titleArticle">{article.title}</Typography>
-                    <Editor
-                      editorState={htmlToDraftBlocks(article.text)}
-                      editorStyle={{
-                        lineHeight: 0.1,
-                        fontSize: '14px',
-                        color: 'black',
-                      }}
-                      readOnly={true}
-                      wrapperStyle={{
-                        width: 'auto',
-                        borderRadius: '2px',
-                      }}
-                      toolbarStyle={{ display: 'none' }}
-                    />
-                  </Box>
-                }
-              />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-          </Box>
-        );
-      })}
+      {sortArticles
+        .sort((a, b) => b.id - a.id)
+        .map((article) => {
+          return (
+            <Box key={article.id}>
+              <Divider variant="inset" component="li" />
+              <ListItem alignItems="flex-start">
+                <ListItemAvatar>
+                  <Avatar src={article.avatar} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={
+                    <Box className="containerHeaderArticle">
+                      <Typography className="authorArticle">
+                        <b>Author</b>: {article.login}
+                      </Typography>
+                      <Typography className="dateArticle">
+                        <b>Published</b>: {`${new Date(article.updatedAt).toLocaleDateString('uk-UK')}p.`}
+                      </Typography>
+                      <DotsMenu id={article.id} title={article.title} text={article.text} />
+                    </Box>
+                  }
+                  secondary={
+                    <Box className="containerBodyArticle">
+                      <Typography className="titleArticle">{article.title}</Typography>
+                      <Editor
+                        editorState={htmlToDraftBlocks(article.text)}
+                        editorStyle={{
+                          lineHeight: 0.1,
+                          fontSize: '14px',
+                          color: 'black',
+                        }}
+                        readOnly={true}
+                        wrapperStyle={{
+                          width: 'auto',
+                          borderRadius: '2px',
+                        }}
+                        toolbarStyle={{ display: 'none' }}
+                      />
+                    </Box>
+                  }
+                />
+              </ListItem>
+              <Divider variant="inset" component="li" />
+            </Box>
+          );
+        })}
     </List>
   );
 };
