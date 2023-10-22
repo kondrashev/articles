@@ -1,10 +1,7 @@
-import '@styles/authorCreateArticle';
-
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { InputLabel } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
 import TextField from '@mui/material/TextField';
 import React, { ChangeEvent, FC, useEffect } from 'react';
 
@@ -22,13 +19,6 @@ const CreateArticle: FC = () => {
   useEffect(() => {
     refEditor.current++;
   }, [values.titleEditor, values.textEditor]);
-
-  const closeForms = () => {
-    setValues({
-      ...values,
-      isShowEditor: values.isEditEditor && true,
-    });
-  };
 
   const articleAdd = () => {
     if (refEditor.current <= 2 || !values.titleEditor || !values.textEditor.length || values.textEditor.length === 8) {
@@ -78,48 +68,47 @@ const CreateArticle: FC = () => {
     });
   };
 
-  const showEditorTool = () => {
+  const handleClose = () => {
     setValues({
       ...values,
-      isShowEditor: true,
+      isShowEditor: false,
+      isEditEditor: false,
+      titleEditor: '',
+      textEditor: '',
+      articleId: 0,
     });
+    refEditor.current = 0;
   };
 
   return (
-    <ClickAwayListener onClickAway={closeForms}>
-      <Box
-        className="containerCreateArticle"
-        sx={{
-          height: values.isShowEditor ? '400px' : '50px',
-          transition: 'height .7s',
-        }}
-      >
-        <Box className="containerTitle">
-          <Avatar className="avatar" src={avatar} />
-          <TextField
-            label="Title"
-            variant="outlined"
-            className="title"
-            value={values.titleEditor}
-            placeholder="Add titel article"
-            onChange={onChangeTitleArticle}
-            onClick={showEditorTool}
-          />
-        </Box>
-        {values.isShowEditor && (
-          <Box className="containerEditorTool">
-            {!values.titleEditor && <InputLabel className="inputErrorTitle">Title can not be empty!</InputLabel>}
-            <EditorTool />
-            {values.textEditor.length === 0 || values.textEditor.length === 8 ? (
-              <InputLabel className="inputErrorEditor">Text can not be empty!</InputLabel>
-            ) : null}
-            <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={articleAdd}>
-              {values.isEditEditor ? 'Update' : 'Add'}
-            </Button>
-          </Box>
+    <Box>
+      <Menu open={values.isShowEditor} onClose={handleClose}>
+        <TextField
+          label="Title"
+          variant="outlined"
+          sx={{
+            width: '650px',
+            marginTop: '10px',
+            marginLeft: '10px',
+          }}
+          value={values.titleEditor}
+          placeholder="Add titel article"
+          onChange={onChangeTitleArticle}
+        />
+        {!values.titleEditor && (
+          <InputLabel sx={{ position: 'absolute', top: '80px', left: '10px', width: 'auto', color: 'red' }}>Title can not be empty!</InputLabel>
         )}
-      </Box>
-    </ClickAwayListener>
+        <EditorTool />
+        {values.textEditor.length === 0 || values.textEditor.length === 8 ? (
+          <InputLabel sx={{ position: 'absolute', top: '300px', left: '10px', width: 'auto', color: 'red' }}>Text can not be empty!</InputLabel>
+        ) : null}
+        {values.textEditor.length === 0 || values.textEditor.length === 8 ? null : (
+          <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={articleAdd}>
+            Published
+          </Button>
+        )}
+      </Menu>
+    </Box>
   );
 };
 

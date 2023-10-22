@@ -26,18 +26,19 @@ const DotsMenu: FC<IProps> = (props) => {
   const dispatch = useAppDispatch();
   const { values, setValues } = useAppContext();
   const { id, title, text }: IProps = props;
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [close, setClose] = useState<null | HTMLElement>(null);
+  const open = Boolean(close);
   const handleClick = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+    setClose(event.currentTarget);
   };
   const handleClose = (option: string) => {
-    setAnchorEl(null);
+    setClose(null);
     if (option === 'Edit article') {
       setValues({
         ...values,
         articleId: id,
         isEditEditor: true,
+        isShowEditor: true,
         titleEditor: title,
         textEditor: text,
       });
@@ -63,7 +64,7 @@ const DotsMenu: FC<IProps> = (props) => {
         MenuListProps={{
           'aria-labelledby': 'long-button',
         }}
-        anchorEl={anchorEl}
+        anchorEl={close}
         open={open}
         onClose={handleClose}
         PaperProps={{

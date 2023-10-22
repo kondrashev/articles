@@ -10,10 +10,12 @@ import Typography from '@mui/material/Typography';
 import React, { ChangeEvent, FC } from 'react';
 
 import { IUser } from '../../../constants/constants';
+import { useAppContext } from '../../context/context';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { upLoadFile } from '../../store/users/actions/actions';
 
 const AppBarMenu: FC = () => {
+  const { values, setValues } = useAppContext();
   const dispatch = useAppDispatch();
   const Input = styled('input')({
     display: 'none',
@@ -27,6 +29,13 @@ const AppBarMenu: FC = () => {
   const loadUpFile = (event: ChangeEvent<HTMLInputElement>) => {
     const data = { login, file: event.target.files[0] };
     dispatch(upLoadFile(data));
+  };
+
+  const showEditorTool = () => {
+    setValues({
+      ...values,
+      isShowEditor: true,
+    });
   };
 
   return (
@@ -65,6 +74,9 @@ const AppBarMenu: FC = () => {
                 Add avatar
               </Button>
             </label>
+            <Button onClick={showEditorTool} sx={{ my: 2, color: 'white', display: 'block' }}>
+              Add article
+            </Button>
             <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
               Logout
             </Button>

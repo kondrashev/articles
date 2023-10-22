@@ -30,26 +30,22 @@ const EditorTool: FC = () => {
         });
       }}
       wrapperStyle={{
-        marginTop: '20px',
-        width: '640px',
-        marginLeft: '10px',
-        padding: '10px',
+        width: '650px',
         borderRadius: '2px',
-        boxShadow: '2px 2px 2px 0 rgba(0, 0, 0, 0.2)',
+        padding: '10px',
       }}
       editorStyle={{
-        paddingLeft: '10px',
-        minHeight: '175px',
+        minHeight: '150px',
         lineHeight: 0.1,
         fontSize: '20px',
         color: 'black',
       }}
       toolbarStyle={{
-        padding: '5px 8px 1px',
+        marginTop: '30px',
         display: 'flex',
+        width: 'auto',
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottom: '1px solid rgba(58, 53, 65, 0.12)',
       }}
       toolbar={{
         options: ['inline', 'textAlign', 'image'],
