@@ -92,7 +92,7 @@ const CreateArticle: FC = () => {
             marginLeft: '10px',
           }}
           value={values.titleEditor}
-          placeholder="Add titel article"
+          placeholder="Add title article"
           onChange={onChangeTitleArticle}
         />
         {!values.titleEditor && (
