@@ -1,5 +1,4 @@
 const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 require('babel-polyfill');
 
 module.exports = {
@@ -10,11 +9,6 @@ module.exports = {
   output: {
     filename: './server/static/bundle.js',
   },
-  plugins: [
-    new HTMLWebpackPlugin({
-      template: './server/static/template/index.html',
-    }),
-  ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', 'css', '.scss'],
     alias: {
