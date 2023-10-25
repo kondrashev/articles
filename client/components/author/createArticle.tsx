@@ -1,6 +1,6 @@
+import NearMeIcon from '@mui/icons-material/NearMe';
 import { InputLabel } from '@mui/material';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import TextField from '@mui/material/TextField';
 import React, { ChangeEvent, FC, useEffect } from 'react';
@@ -81,34 +81,32 @@ const CreateArticle: FC = () => {
   };
 
   return (
-    <Box>
-      <Menu open={values.isShowEditor} onClose={handleClose}>
-        <TextField
-          label="Title"
-          variant="outlined"
-          sx={{
-            width: '650px',
-            marginTop: '10px',
-            marginLeft: '10px',
-          }}
-          value={values.titleEditor}
-          placeholder="Add title article"
-          onChange={onChangeTitleArticle}
-        />
-        {!values.titleEditor && (
-          <InputLabel sx={{ position: 'absolute', top: '80px', left: '10px', width: 'auto', color: 'red' }}>Title can not be empty!</InputLabel>
-        )}
-        <EditorTool />
-        {values.textEditor.length === 0 || values.textEditor.length === 8 ? (
-          <InputLabel sx={{ position: 'absolute', top: '300px', left: '10px', width: 'auto', color: 'red' }}>Text can not be empty!</InputLabel>
-        ) : null}
-        {values.textEditor.length === 0 || values.textEditor.length === 8 ? null : (
-          <Button disableElevation variant="contained" color="primary" className="buttonEditor" onClick={articleAdd}>
-            Published
-          </Button>
-        )}
-      </Menu>
-    </Box>
+    <Menu open={values.isShowEditor} onClose={handleClose} sx={{ position: 'absolute' }}>
+      <TextField
+        label="Title"
+        variant="outlined"
+        sx={{
+          width: '650px',
+          marginTop: '10px',
+          marginLeft: '10px',
+        }}
+        value={values.titleEditor}
+        placeholder="Add title article"
+        onChange={onChangeTitleArticle}
+      />
+      {!values.titleEditor && (
+        <InputLabel sx={{ position: 'absolute', top: '80px', left: '10px', width: 'auto', color: 'red' }}>Title can not be empty!</InputLabel>
+      )}
+      <EditorTool />
+      {values.textEditor.length === 0 || values.textEditor.length === 8 ? (
+        <InputLabel sx={{ position: 'absolute', top: '300px', left: '10px', width: 'auto', color: 'red' }}>Text can not be empty!</InputLabel>
+      ) : null}
+      {values.textEditor.length === 0 || values.textEditor.length === 8 ? null : (
+        <IconButton onClick={articleAdd} sx={{ position: 'absolute', top: '28px', right: '10px' }}>
+          <NearMeIcon color="primary" />
+        </IconButton>
+      )}
+    </Menu>
   );
 };
 

@@ -30,7 +30,7 @@ const EditorTool: FC = () => {
         });
       }}
       wrapperStyle={{
-        width: '650px',
+        width: 'auto',
         borderRadius: '2px',
         padding: '10px',
       }}
@@ -38,7 +38,7 @@ const EditorTool: FC = () => {
         minHeight: '150px',
         lineHeight: 0.1,
         fontSize: '20px',
-        color: 'black',
+        color: '#515151',
       }}
       toolbarStyle={{
         marginTop: '30px',

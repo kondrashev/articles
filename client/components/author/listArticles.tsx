@@ -68,7 +68,7 @@ const ListArticles: FC = () => {
                         editorStyle={{
                           lineHeight: 0.1,
                           fontSize: '14px',
-                          color: 'black',
+                          color: '#515151',
                         }}
                         readOnly={true}
                         wrapperStyle={{
