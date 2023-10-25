@@ -36,7 +36,7 @@ const EditorTool: FC = () => {
       }}
       editorStyle={{
         minHeight: '150px',
-        lineHeight: 0.1,
+        lineHeight: 0.5,
         fontSize: '20px',
         color: '#515151',
       }}

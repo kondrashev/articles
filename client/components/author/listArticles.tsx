@@ -66,9 +66,9 @@ const ListArticles: FC = () => {
                       <Editor
                         editorState={htmlToDraftBlocks(article.text)}
                         editorStyle={{
-                          lineHeight: 0.1,
-                          fontSize: '14px',
-                          color: '#515151',
+                          lineHeight: 0.5,
+                          fontSize: '20px',
+                          color: '#333333',
                         }}
                         readOnly={true}
                         wrapperStyle={{

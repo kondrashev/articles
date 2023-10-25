@@ -102,7 +102,7 @@ const CreateArticle: FC = () => {
         <InputLabel sx={{ position: 'absolute', top: '300px', left: '10px', width: 'auto', color: 'red' }}>Text can not be empty!</InputLabel>
       ) : null}
       {values.textEditor.length === 0 || values.textEditor.length === 8 ? null : (
-        <IconButton onClick={articleAdd} sx={{ position: 'absolute', top: '28px', right: '10px' }}>
+        <IconButton onClick={articleAdd} sx={{ position: 'absolute', top: '28px', left: '620px' }}>
           <NearMeIcon color="primary" />
         </IconButton>
       )}
