@@ -83,6 +83,7 @@ const CreateArticle: FC = () => {
   return (
     <Menu open={values.isShowEditor} onClose={handleClose} sx={{ position: 'absolute' }}>
       <TextField
+        multiline
         label="Title"
         variant="outlined"
         sx={{
