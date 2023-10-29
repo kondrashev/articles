@@ -11,6 +11,7 @@ interface IUserArticle extends IArticle {
   create;
   destroy;
   update;
+  findAndCountAll;
 }
 
 const Article: IUserArticle = connection.define('articles', {

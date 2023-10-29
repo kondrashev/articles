@@ -11,4 +11,7 @@ export default {
   getArticles: '/get/articles',
   deleteArticles: '/delete/articles',
   updateArticle: '/update/article',
+  publicRouter: '/public',
+  listArticles: '/list/articles',
+  searchArticle: '/search/article',
 };
