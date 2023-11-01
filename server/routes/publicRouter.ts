@@ -5,4 +5,5 @@ import endpoints from '../../constants/endpoints';
 const router = Router();
 import PublicController from '../controllers/publicController';
 router.get(endpoints.listArticles, PublicController.listArticles);
+router.get(endpoints.searchArticle, PublicController.searchArticle);
 export default router;
