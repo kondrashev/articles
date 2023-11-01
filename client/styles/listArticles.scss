@@ -1,0 +1,12 @@
+.containerListArticles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px solid black;
+
+    .appBar{
+        background-color: #318EA3;
+    }
+}
