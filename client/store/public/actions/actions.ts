@@ -3,8 +3,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IArticle } from '../../../../constants/constants';
 import endpoints from '../../../../constants/endpoints';
 
-export const getPublicArticles = createAsyncThunk<IArticle[], number>('public/getArticles', async (page) => {
+interface IlistPublicArticles {
+  count: number;
+  rows: IArticle[];
+}
+
+export const getPublicArticles = createAsyncThunk<IlistPublicArticles, number>('public/getArticles', async (page) => {
   const response = await fetch(`${endpoints.publicRouter}${endpoints.listArticles}?page=${page}`, {});
-  const articles: Promise<IArticle[]> = response.json();
+  const articles: Promise<IlistPublicArticles> = response.json();
   return articles;
 });

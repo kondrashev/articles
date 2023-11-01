@@ -16,6 +16,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import { IArticle, IUser } from '../../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { getArticles } from '../../store/authors/actions/actions';
+import { getPublicArticles } from '../../store/public/actions/actions';
 import DotsMenu from './dotsMenu';
 
 export const htmlToDraftBlocks = (html) => {
@@ -29,15 +30,22 @@ export const htmlToDraftBlocks = (html) => {
 const ListArticles: FC = () => {
   const { id }: IUser = useAppSelector((state) => state.usersReducer.user);
   const dispatch = useAppDispatch();
-  const articles: string = useAppSelector((state) => JSON.stringify(state.authorsReducer.articles));
+  const articles: string = useAppSelector((state) =>
+    id !== 0 ? JSON.stringify(state.authorsReducer.articles) : JSON.stringify(state.listArticlesReducer.articles.rows),
+  );
   const sortArticles: IArticle[] = JSON.parse(articles);
+  const { count } = useAppSelector((state) => state.listArticlesReducer.articles);
 
   useEffect(() => {
-    dispatch(getArticles(id));
+    if (id !== 0) {
+      dispatch(getArticles(id));
+    } else {
+      dispatch(getPublicArticles(0));
+    }
   }, []);
 
   return (
-    <List className="containerListArticles">
+    <List className="containerListArticles" sx={{ top: id === 0 && '80px' }}>
       {sortArticles
         .sort((a, b) => b.id - a.id)
         .map((article) => {

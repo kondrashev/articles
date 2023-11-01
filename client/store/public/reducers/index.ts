@@ -6,13 +6,13 @@ import { getPublicArticles } from '../actions/actions';
 interface listArticlesState {
   loading: boolean;
   error: string;
-  articles: IArticle[];
+  articles: { count: number; rows: IArticle[] };
 }
 
 const initialState: listArticlesState = {
   loading: false,
   error: '',
-  articles: [],
+  articles: { count: 0, rows: [] },
 };
 
 const listArticlesReducer = createSlice({
@@ -20,7 +20,7 @@ const listArticlesReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [getPublicArticles.fulfilled.type]: (state, action: PayloadAction<IArticle[]>) => {
+    [getPublicArticles.fulfilled.type]: (state, action: PayloadAction<{ count: number; rows: IArticle[] }>) => {
       state.articles = action.payload;
       state.loading = false;
       state.error = '';

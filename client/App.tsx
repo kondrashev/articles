@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Admin from './components/admin/admin';
-import ListArticles from './components/articles/listArticles';
+import ListPublicArticles from './components/articles/listPublicArticles';
 import Author from './components/author/author';
 import Authorization from './components/authorization/authorization';
 import AppContextPovider from './context/context';
@@ -21,7 +21,7 @@ const App: FC = () => {
       <AppContextPovider>
         <Box className="container">
           <Routes>
-            <Route path="/" element={<ListArticles />} />
+            <Route path="/" element={<ListPublicArticles />} />
             <Route path="/panel" element={<Authorization />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/author" element={<Author />} />
