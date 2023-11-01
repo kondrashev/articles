@@ -14,6 +14,7 @@ interface IValuesTypes {
   isShowEditor: boolean;
   isEditEditor: boolean;
   articleId: number;
+  page: number;
 }
 interface IValues {
   values: IValuesTypes;
@@ -37,6 +38,7 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     isShowEditor: false,
     isEditEditor: false,
     articleId: 0,
+    page: 0,
   });
   const refEditor = useRef(0);
   const value = {

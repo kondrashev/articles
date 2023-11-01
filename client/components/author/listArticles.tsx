@@ -7,13 +7,16 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { ContentState, EditorState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
-import React, { FC, useEffect } from 'react';
+import React, { ChangeEvent, FC, useEffect } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 
 import { IArticle, IUser } from '../../../constants/constants';
+import { useAppContext } from '../../context/context';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { getArticles } from '../../store/authors/actions/actions';
 import { getPublicArticles } from '../../store/public/actions/actions';
@@ -28,6 +31,7 @@ export const htmlToDraftBlocks = (html) => {
 };
 
 const ListArticles: FC = () => {
+  const { values, setValues } = useAppContext();
   const { id }: IUser = useAppSelector((state) => state.usersReducer.user);
   const dispatch = useAppDispatch();
   const articles: string = useAppSelector((state) =>
@@ -40,9 +44,16 @@ const ListArticles: FC = () => {
     if (id !== 0) {
       dispatch(getArticles(id));
     } else {
-      dispatch(getPublicArticles(0));
+      dispatch(getPublicArticles(values.page));
     }
-  }, []);
+  }, [values.page]);
+
+  const getNumberPage = (event: ChangeEvent<unknown>, value: number) => {
+    setValues({
+      ...values,
+      page: value - 1,
+    });
+  };
 
   return (
     <List className="containerListArticles" sx={{ top: id === 0 && '80px' }}>
@@ -93,6 +104,13 @@ const ListArticles: FC = () => {
             </Box>
           );
         })}
+      {id === 0 && (
+        <Box className="containerPagination">
+          <Stack spacing={2}>
+            <Pagination count={Math.round(count / 2)} variant="outlined" shape="rounded" onChange={getNumberPage} />
+          </Stack>
+        </Box>
+      )}
     </List>
   );
 };

@@ -36,4 +36,11 @@
         }
     }
 
+    .containerPagination{
+        position: fixed;
+        top: .5%;
+        right: 20px;                       
+        z-index: 10000;
+    }
+
 }
