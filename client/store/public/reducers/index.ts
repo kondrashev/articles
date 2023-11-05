@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IArticle } from '../../../../constants/constants';
-import { getPublicArticles } from '../actions/actions';
+import { getPublicArticles, searchArticles } from '../actions/actions';
 
 interface listArticlesState {
   loading: boolean;
@@ -30,6 +30,19 @@ const listArticlesReducer = createSlice({
       state.error = '';
     },
     [getPublicArticles.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [searchArticles.fulfilled.type]: (state, action: PayloadAction<IArticle[]>) => {
+      state.articles.rows = action.payload;
+      state.loading = false;
+      state.error = '';
+    },
+    [searchArticles.pending.type]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
+    [searchArticles.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },

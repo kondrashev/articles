@@ -13,5 +13,5 @@ export default {
   updateArticle: '/update/article',
   publicRouter: '/public',
   listArticles: '/list/articles',
-  searchArticle: '/search/article',
+  searchArticles: '/search/articles',
 };

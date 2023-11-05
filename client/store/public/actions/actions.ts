@@ -13,3 +13,9 @@ export const getPublicArticles = createAsyncThunk<IlistPublicArticles, number>('
   const articles: Promise<IlistPublicArticles> = response.json();
   return articles;
 });
+
+export const searchArticles = createAsyncThunk<IArticle[], string>('public/searchArticles', async (pattern) => {
+  const response = await fetch(`${endpoints.publicRouter}${endpoints.searchArticles}?pattern=${pattern}`, {});
+  const articles: Promise<IArticle[]> = response.json();
+  return articles;
+});

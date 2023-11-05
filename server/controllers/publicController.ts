@@ -14,7 +14,7 @@ class PublicController {
     return res.json(articles);
   }
 
-  async searchArticle(req: Request, res: Response) {
+  async searchArticles(req: Request, res: Response) {
     const { pattern } = req.query;
     const articles: IArticle[] = await Article.findAll({ where: { title: { [Op.startsWith]: pattern } } });
     return res.json(articles);

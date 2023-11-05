@@ -5,7 +5,9 @@ import { alpha, styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import React, { ChangeEvent, FC } from 'react';
 
-import { useAppContext } from '../../context/context';
+import { IArticle } from '../../../constants/constants';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { searchArticles } from '../../store/public/actions/actions';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -49,13 +51,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const AppPanel: FC = () => {
-  const { values, setValues } = useAppContext();
+  const dispatch = useAppDispatch();
+  const articles: IArticle[] = useAppSelector((state) => state.listArticlesReducer.articles.rows);
 
   const searchArticle = (e: ChangeEvent<HTMLInputElement>) => {
-    setValues({
-      ...values,
-      titleSearch: e.currentTarget.value,
-    });
+    dispatch(searchArticles(`${e.currentTarget.value.charAt(0).toUpperCase()}${e.currentTarget.value.slice(1)}`));
   };
 
   return (
@@ -65,12 +65,7 @@ const AppPanel: FC = () => {
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search article…"
-            inputProps={{ 'aria-label': 'search' }}
-            value={values.titleSearch}
-            onChange={searchArticle}
-          />
+          <StyledInputBase placeholder="Search article…" inputProps={{ 'aria-label': 'search' }} onChange={searchArticle} />
         </Search>
       </Toolbar>
     </AppBar>
