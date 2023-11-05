@@ -3,7 +3,9 @@ import AppBar from '@mui/material/AppBar';
 import InputBase from '@mui/material/InputBase';
 import { alpha, styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
+
+import { useAppContext } from '../../context/context';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -47,6 +49,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const AppPanel: FC = () => {
+  const { values, setValues } = useAppContext();
+
+  const searchArticle = (e: ChangeEvent<HTMLInputElement>) => {
+    setValues({
+      ...values,
+      titleSearch: e.currentTarget.value,
+    });
+  };
+
   return (
     <AppBar className="appBar">
       <Toolbar>
@@ -54,7 +65,12 @@ const AppPanel: FC = () => {
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
-          <StyledInputBase placeholder="Search article…" inputProps={{ 'aria-label': 'search' }} />
+          <StyledInputBase
+            placeholder="Search article…"
+            inputProps={{ 'aria-label': 'search' }}
+            value={values.titleSearch}
+            onChange={searchArticle}
+          />
         </Search>
       </Toolbar>
     </AppBar>

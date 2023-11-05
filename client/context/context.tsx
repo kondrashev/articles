@@ -15,6 +15,7 @@ interface IValuesTypes {
   isEditEditor: boolean;
   articleId: number;
   page: number;
+  titleSearch: string;
 }
 interface IValues {
   values: IValuesTypes;
@@ -39,6 +40,7 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     isEditEditor: false,
     articleId: 0,
     page: 0,
+    titleSearch: '',
   });
   const refEditor = useRef(0);
   const value = {
