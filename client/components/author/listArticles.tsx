@@ -37,8 +37,11 @@ const ListArticles: FC = () => {
   const articles: string = useAppSelector((state) =>
     id !== 0 ? JSON.stringify(state.authorsReducer.articles) : JSON.stringify(state.listArticlesReducer.articles.rows),
   );
-  const sortArticles: IArticle[] = JSON.parse(articles);
   const { count } = useAppSelector((state) => state.listArticlesReducer.articles);
+  const articleSearch: IArticle[] = useAppSelector((state) => state.listArticlesReducer.searchArticles).filter(
+    (article) => article.title === values.searchGetArticle,
+  );
+  const sortArticles: IArticle[] = !values.searchGetArticle ? JSON.parse(articles) : articleSearch;
 
   useEffect(() => {
     if (id !== 0) {
@@ -51,6 +54,7 @@ const ListArticles: FC = () => {
   const getNumberPage = (event: ChangeEvent<unknown>, value: number) => {
     setValues({
       ...values,
+      searchGetArticle: '',
       page: value - 1,
     });
   };

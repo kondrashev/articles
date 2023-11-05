@@ -7,12 +7,14 @@ interface listArticlesState {
   loading: boolean;
   error: string;
   articles: { count: number; rows: IArticle[] };
+  searchArticles: IArticle[];
 }
 
 const initialState: listArticlesState = {
   loading: false,
   error: '',
   articles: { count: 0, rows: [] },
+  searchArticles: [],
 };
 
 const listArticlesReducer = createSlice({
@@ -34,7 +36,7 @@ const listArticlesReducer = createSlice({
       state.error = action.payload;
     },
     [searchArticles.fulfilled.type]: (state, action: PayloadAction<IArticle[]>) => {
-      state.articles.rows = action.payload;
+      state.searchArticles = action.payload;
       state.loading = false;
       state.error = '';
     },

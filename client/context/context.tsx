@@ -16,6 +16,7 @@ interface IValuesTypes {
   articleId: number;
   page: number;
   titleSearch: string;
+  searchGetArticle: string;
 }
 interface IValues {
   values: IValuesTypes;
@@ -41,6 +42,7 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     articleId: 0,
     page: 0,
     titleSearch: '',
+    searchGetArticle: '',
   });
   const refEditor = useRef(0);
   const value = {

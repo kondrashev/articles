@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const AppPanel: FC = () => {
   const { values, setValues } = useAppContext();
   const dispatch = useAppDispatch();
-  const articles: IArticle[] = useAppSelector((state) => state.listArticlesReducer.articles.rows);
+  const articles: IArticle[] = useAppSelector((state) => state.listArticlesReducer.searchArticles);
 
   const searchArticle = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({
@@ -72,8 +72,8 @@ const AppPanel: FC = () => {
     setValues({
       ...values,
       titleSearch: '',
+      searchGetArticle: title,
     });
-    console.log(title);
   };
 
   return (
