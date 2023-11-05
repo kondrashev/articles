@@ -1,11 +1,16 @@
 import SearchIcon from '@mui/icons-material/Search';
 import AppBar from '@mui/material/AppBar';
 import InputBase from '@mui/material/InputBase';
+import ListItemText from '@mui/material/ListItemText';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import Paper from '@mui/material/Paper';
 import { alpha, styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import React, { ChangeEvent, FC } from 'react';
 
 import { IArticle } from '../../../constants/constants';
+import { useAppContext } from '../../context/context';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { searchArticles } from '../../store/public/actions/actions';
 
@@ -51,22 +56,51 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const AppPanel: FC = () => {
+  const { values, setValues } = useAppContext();
   const dispatch = useAppDispatch();
   const articles: IArticle[] = useAppSelector((state) => state.listArticlesReducer.articles.rows);
 
   const searchArticle = (e: ChangeEvent<HTMLInputElement>) => {
+    setValues({
+      ...values,
+      titleSearch: `${e.currentTarget.value.charAt(0).toUpperCase()}${e.currentTarget.value.slice(1)}`,
+    });
     dispatch(searchArticles(`${e.currentTarget.value.charAt(0).toUpperCase()}${e.currentTarget.value.slice(1)}`));
+  };
+
+  const changeArticle = (title: string) => {
+    setValues({
+      ...values,
+      titleSearch: '',
+    });
+    console.log(title);
   };
 
   return (
     <AppBar className="appBar">
-      <Toolbar>
+      <Toolbar sx={{ position: 'relative' }}>
         <Search>
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
-          <StyledInputBase placeholder="Search article…" inputProps={{ 'aria-label': 'search' }} onChange={searchArticle} />
+          <StyledInputBase
+            placeholder="Search article…"
+            inputProps={{ 'aria-label': 'search' }}
+            value={values.titleSearch}
+            onChange={searchArticle}
+          />
         </Search>
+        {values.titleSearch.length !== 0 && articles.length > 0 ? (
+          <Paper sx={{ width: '305px', maxWidth: '100%', position: 'absolute', top: '60px', left: '32px' }}>
+            <MenuList>
+              {articles.map((article) => (
+                <MenuItem key={article.id} onClick={() => changeArticle(article.title)}>
+                  <ListItemText>{article.title.substring(0, 30)}</ListItemText>
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Paper>
+        ) : null}
       </Toolbar>
     </AppBar>
   );
