@@ -64,6 +64,7 @@ const AppPanel: FC = () => {
     setValues({
       ...values,
       titleSearch: `${e.currentTarget.value.charAt(0).toUpperCase()}${e.currentTarget.value.slice(1)}`,
+      searchGetArticle: '',
     });
     dispatch(searchArticles(`${e.currentTarget.value.charAt(0).toUpperCase()}${e.currentTarget.value.slice(1)}`));
   };
