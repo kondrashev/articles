@@ -80,7 +80,7 @@ const ListArticles: FC = () => {
                       <Typography className="dateArticle">
                         <b>Published</b>: {`${new Date(article.updatedAt).toLocaleDateString('uk-UK')}p.`}
                       </Typography>
-                      <DotsMenu id={article.id} title={article.title} text={article.text} />
+                      {id ? <DotsMenu id={article.id} title={article.title} text={article.text} /> : null}
                     </Box>
                   }
                   secondary={
