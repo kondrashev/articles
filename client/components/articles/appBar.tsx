@@ -80,7 +80,7 @@ const AppPanel: FC = () => {
   return (
     <AppBar className="appBar">
       <Toolbar sx={{ position: 'relative' }}>
-        <Search>
+        <Search className="search">
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
