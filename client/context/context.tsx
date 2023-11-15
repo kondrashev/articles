@@ -17,6 +17,7 @@ interface IValuesTypes {
   page: number;
   titleSearch: string;
   searchGetArticle: string;
+  isShowCloseButtonCreateArticle: boolean;
 }
 interface IValues {
   values: IValuesTypes;
@@ -43,6 +44,7 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     page: 0,
     titleSearch: '',
     searchGetArticle: '',
+    isShowCloseButtonCreateArticle: false,
   });
   const refEditor = useRef(0);
   const value = {

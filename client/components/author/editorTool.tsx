@@ -21,7 +21,7 @@ const EditorTool: FC = () => {
 
   return (
     <Editor
-      placeholder={'Add article'}
+      placeholder={'Add an article'}
       defaultEditorState={htmlToDraftBlocks(values.textEditor)}
       onEditorStateChange={(newState) => {
         setValues({

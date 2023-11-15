@@ -1,7 +1,11 @@
+import '@styles/createArticle';
+
+import CancelIcon from '@mui/icons-material/Cancel';
 import NearMeIcon from '@mui/icons-material/NearMe';
 import { InputLabel } from '@mui/material';
+import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
+import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import React, { ChangeEvent, FC, useEffect } from 'react';
 
@@ -10,6 +14,8 @@ import { useAppContext } from '../../context/context';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { addArticle, updateArticle } from '../../store/authors/actions/actions';
 import EditorTool from './editorTool';
+
+const CreateArticleContainer = styled(Box)(() => ({}));
 
 const CreateArticle: FC = () => {
   const { values, setValues, refEditor } = useAppContext();
@@ -64,6 +70,7 @@ const CreateArticle: FC = () => {
   const onChangeTitleArticle = (e: ChangeEvent<HTMLInputElement>) => {
     setValues({
       ...values,
+      isShowCloseButtonCreateArticle: false,
       titleEditor: e.currentTarget.value,
     });
   };
@@ -76,38 +83,69 @@ const CreateArticle: FC = () => {
       titleEditor: '',
       textEditor: '',
       articleId: 0,
+      isShowCloseButtonCreateArticle: false,
     });
     refEditor.current = 0;
   };
 
+  const visibleButtonClose = () => {
+    setValues({
+      ...values,
+      isShowCloseButtonCreateArticle: true,
+    });
+  };
+
+  const unvisibleButtonClose = () => {
+    setValues({
+      ...values,
+      isShowCloseButtonCreateArticle: false,
+    });
+  };
+
   return (
-    <Menu open={values.isShowEditor} onClose={handleClose} sx={{ position: 'absolute' }}>
-      <TextField
-        multiline
-        label="Title"
-        variant="outlined"
-        sx={{
-          width: '650px',
-          marginTop: '10px',
-          marginLeft: '10px',
-        }}
-        value={values.titleEditor}
-        placeholder="Add title article"
-        onChange={onChangeTitleArticle}
-      />
-      {!values.titleEditor && (
-        <InputLabel sx={{ position: 'absolute', top: '80px', left: '10px', width: 'auto', color: 'red' }}>Title can not be empty!</InputLabel>
-      )}
-      <EditorTool />
-      {values.textEditor.length === 0 || values.textEditor.length === 8 ? (
-        <InputLabel sx={{ position: 'absolute', top: '300px', left: '10px', width: 'auto', color: 'red' }}>Text can not be empty!</InputLabel>
-      ) : null}
-      {values.textEditor.length === 0 || values.textEditor.length === 8 ? null : (
-        <IconButton onClick={articleAdd} sx={{ position: 'absolute', top: '28px', left: '620px' }}>
-          <NearMeIcon color="primary" />
+    <>
+      <CreateArticleContainer
+        className="containerCreateArticle"
+        onMouseLeave={visibleButtonClose}
+        onMouseMoveCapture={unvisibleButtonClose}
+        sx={{ height: values.isShowEditor ? '310px' : '0px', transition: 'height .8s', top: values.isShowEditor && '90px' }}
+      >
+        {values.isShowEditor && (
+          <Box>
+            <TextField
+              multiline
+              label="Title"
+              variant="outlined"
+              sx={{
+                width: '650px',
+                marginTop: '10px',
+                marginLeft: '10px',
+              }}
+              value={values.titleEditor}
+              placeholder="Add a title of article"
+              onChange={onChangeTitleArticle}
+            />
+            {!values.titleEditor && (
+              <InputLabel sx={{ position: 'absolute', top: '80px', left: '10px', width: 'auto', color: 'red' }}>Title can not be empty!</InputLabel>
+            )}
+            <EditorTool />
+            {values.textEditor.length === 0 || values.textEditor.length === 8 ? (
+              <InputLabel sx={{ position: 'absolute', top: '300px', left: '10px', width: 'auto', color: 'red' }}>Text can not be empty!</InputLabel>
+            ) : null}
+            {values.textEditor.length === 0 || values.textEditor.length === 8 ? null : (
+              <IconButton onClick={articleAdd} sx={{ position: 'absolute', top: '28px', left: '620px' }}>
+                <NearMeIcon color="primary" />
+              </IconButton>
+            )}
+          </Box>
+        )}
+      </CreateArticleContainer>
+      {values.isShowCloseButtonCreateArticle && (
+        <IconButton onClick={handleClose} sx={{ position: 'absolute', top: '65px', left: '670px', cursor: 'pointer', zIndex: '10' }}>
+          <CancelIcon color="primary" />
         </IconButton>
       )}
-    </Menu>
+    </>
   );
 };
 
