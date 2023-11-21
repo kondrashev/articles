@@ -7,6 +7,7 @@ import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
 import { alpha, styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import React, { ChangeEvent, FC } from 'react';
 
 import { IArticle } from '../../../constants/constants';
@@ -79,6 +80,7 @@ const AppPanel: FC = () => {
 
   return (
     <AppBar className="appBar">
+      <Typography className="runningText">Interesting news!</Typography>
       <Toolbar sx={{ position: 'relative' }}>
         <Search className="search">
           <SearchIconWrapper>
