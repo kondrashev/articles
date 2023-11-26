@@ -4,70 +4,57 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    position: relative;
 
     .appBar{
         background-color: #318EA3;
         width:100%;
         white-space:nowrap;
-        overflow:hidden;
-        position: absolute;
-
-        .runningText{
-            position: absolute;
-            top: 12%;
-            left: 0px;
-            color:#fff;
-            font-size:25px;
-            display:inline-block;
-            padding-left:100%;
-            -webkit-animation: marquee 5s infinite linear;
-            animation: marquee 8s infinite linear;
-            z-index: 10;
-        }
-    }
-
-    @-webkit-keyframes marquee {
-        0%{-webkit-transform: translate(0, 0);}
-        100%{-webkit-transform: translate(-100%, 0);}
-        }
-    @keyframes marquee{
-        0%{transform: translate(0, 0);}
-        100%{transform: translate(-100%, 0)}
-    }
-
-    .search{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         overflow: hidden;
-        position: relative;
-        padding: 3px;
-    }
 
-    .search input{
-        background-color: #318EA3;
-        height: 25px;
-    }
-
-    .search::before{
-       content: '';
-       background: conic-gradient(transparent 180deg, #fff, transparent);
-       position: absolute;
-       top: 50%;
-       left: 50%;
-       transform: translate(-50%, -50%);
-       aspect-ratio: 1;
-       width: 100%;
-       animation: rotate 1s linear infinite;
-    }
-
-    @keyframes rotate {
-        from{
-            transform: translate(-50%, -50%) rotate(0turn);
+        .search{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            padding: 3px;
         }
-        to{
-            transform: translate(-50%, -50%) rotate(1turn);
+    
+        .search input{
+            background-color: #318EA3;
+            height: 25px;
         }
+
+        .search::before{
+            content: '';
+            background: conic-gradient(transparent 180deg, #fff, transparent);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            aspect-ratio: 1;
+            width: 100%;
+            animation: rotate 1s linear infinite;
+         }
+     
+         @keyframes rotate {
+             from{
+                 transform: translate(-50%, -50%) rotate(0turn);
+             }
+             to{
+                 transform: translate(-50%, -50%) rotate(1turn);
+             }
+         }
+
     }
 }
+
+.searchList{
+    width: 312px;
+    max-width: 100%;
+    position: absolute;
+    top: 70px;
+    left: 32px;
+ }

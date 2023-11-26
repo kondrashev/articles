@@ -7,10 +7,146 @@ const router = Router();
 import UserController from '../controllers/userController';
 import checkRole from '../middleware/checkRoleMiddleware';
 import errorHandler from '../middleware/ErrorHandlingMiddleware';
+/**
+ * @swagger
+ * /panel:
+ *  get:
+ *   tags:
+ *   - User
+ *   summary: Authorization
+ *   responses:
+ *    200:
+ *     description: App is up and running
+ */
 router.get(endpoints.authorization, UserController.authorization);
+/**
+ * @swagger
+ * /panel/check:
+ *  post:
+ *   tags:
+ *   - User
+ *   summary: Check authorization
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       $ref: '#/components/CheckUserRequest'
+ *   responses:
+ *    200:
+ *     description: Success
+ *     content:
+ *      application/json:
+ *       schema:
+ *        $ref: '#/components/CheckUserResponse'
+ */
 router.post(endpoints.checkAuthorization, UserController.checkAuthorisation);
+/**
+ * @swagger
+ * /panel/add/user:
+ *  post:
+ *   tags:
+ *   - User
+ *   summary: Create a new user
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       $ref: '#/components/CreateUserRequest'
+ *   responses:
+ *    200:
+ *     description: Success
+ *     content:
+ *      application/json:
+ *       schema:
+ *        $ref: '#/components/CreateUserResponse'
+ */
 router.post(endpoints.addUser, UserValidator.checkAddUser(), errorHandler, UserController.addUser);
+/**
+ * @swagger
+ * /panel/get/users:
+ *  get:
+ *   security:
+ *    - Authorization: []
+ *   parameters:
+ *    - name: Authorization
+ *      in: header
+ *      description: An authorization header
+ *      required: true
+ *      type: string
+ *   tags:
+ *   - User
+ *   summary: A list of users with role 'author'
+ *   responses:
+ *    200:
+ *     description: App is up and running
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: array
+ *        items:
+ *         $ref: '#/components/ListUsers'
+ */
 router.get(endpoints.getUsers, checkRole('ADMIN'), UserController.getUsers);
+/**
+ * @swagger
+ * /panel/delete/users:
+ *  post:
+ *   security:
+ *    - Authorization: []
+ *   parameters:
+ *    - name: Authorization
+ *      in: header
+ *      description: An authorization header
+ *      required: true
+ *      type: string
+ *   tags:
+ *   - User
+ *   summary: Delete users
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       $ref: '#/components/DeleteUsersRequest'
+ *   responses:
+ *    200:
+ *     description: Success
+ *     content:
+ *      application/json:
+ *       schema:
+ *        $ref: '#/components/DeleteUsersResponse'
+ */
 router.post(endpoints.deleteUsers, checkRole('ADMIN'), UserController.deleteUsers);
+/**
+ * @swagger
+ * /panel/upload/file:
+ *  post:
+ *   security:
+ *    - Authorization: []
+ *   parameters:
+ *    - name: Authorization
+ *      in: header
+ *      description: An authorization header
+ *      required: true
+ *      type: string
+ *   tags:
+ *   - User
+ *   summary: Upload avatar
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     multipart/form-data:
+ *      schema:
+ *       $ref: '#/components/UploadAvatar'
+ *   responses:
+ *    200:
+ *     description: Success
+ *     content:
+ *      application/json:
+ *       schema:
+ *        $ref: '#/components/ListUsers'
+ */
 router.post(endpoints.uploadFile, checkRole('AUTHOR'), UserController.uploadFile);
 export default router;

@@ -10,6 +10,7 @@ import path from 'path';
 import router from '../server/routes/index';
 import connection from './database/connection';
 import User from './database/models/user';
+import swaggerDocs from './documentation/swagger';
 import errorHandler from './middleware/ErrorHandlingMiddleware';
 
 const PORT = process.env.PORT;
@@ -36,6 +37,7 @@ app.use(errorHandler);
     });
     // eslint-disable-next-line no-console
     app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+    swaggerDocs(app, PORT);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log(e);
