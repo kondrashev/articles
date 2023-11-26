@@ -35,6 +35,7 @@ const CreateArticle: FC = () => {
         titleEditor: '',
         textEditor: '',
         articleId: 0,
+        isShowCloseButtonCreateArticle: false,
       });
       refEditor.current = 0;
       return;
@@ -63,6 +64,7 @@ const CreateArticle: FC = () => {
       titleEditor: '',
       textEditor: '',
       articleId: 0,
+      isShowCloseButtonCreateArticle: false,
     });
     refEditor.current = 0;
   };
@@ -99,6 +101,13 @@ const CreateArticle: FC = () => {
     setValues({
       ...values,
       isShowCloseButtonCreateArticle: false,
+    });
+  };
+
+  const ButtonClose = () => {
+    setValues({
+      ...values,
+      isShowCloseButtonCreateArticle: true,
     });
   };
 
@@ -139,12 +148,16 @@ const CreateArticle: FC = () => {
             )}
           </Box>
         )}
+        {values.isShowCloseButtonCreateArticle && (
+          <IconButton
+            onMouseMoveCapture={ButtonClose}
+            onClick={handleClose}
+            sx={{ position: 'absolute', top: '-20px', left: '670px', cursor: 'pointer', zIndex: '10' }}
+          >
+            <CancelIcon color="primary" />
+          </IconButton>
+        )}
       </CreateArticleContainer>
-      {values.isShowCloseButtonCreateArticle && (
-        <IconButton onClick={handleClose} sx={{ position: 'absolute', top: '65px', left: '670px', cursor: 'pointer', zIndex: '10' }}>
-          <CancelIcon color="primary" />
-        </IconButton>
-      )}
     </>
   );
 };
