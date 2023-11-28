@@ -28,11 +28,7 @@ export const addArticle = createAsyncThunk<IArticle, IDataArticle, { rejectValue
 );
 
 export const getArticles = createAsyncThunk<IArticle[], number>('author/getArticles', async (id) => {
-  const response = await fetch(`${endpoints.authorRouter}${endpoints.getArticles}?userId=${id}`, {
-    headers: {
-      Authorization: localStorage.token,
-    },
-  });
+  const response = await fetch(`${endpoints.authorRouter}${endpoints.getArticles}?userId=${id}`);
   const articles: Promise<IArticle[]> = response.json();
   return articles;
 });

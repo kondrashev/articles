@@ -75,6 +75,41 @@ interface IUserArticle extends IArticle {
  *     type: number
  *     description: The user's id
  *     example: 1
+ *  ListArticlesResponse:
+ *   type: object
+ *   properties:
+ *    id:
+ *     type: number
+ *     description: The article ID.
+ *     example: 1
+ *    avatar:
+ *     type: string
+ *     description: The user's avatar
+ *     example: images/avatar.jpg
+ *    login:
+ *     type: string
+ *     description: The user's login
+ *     example: pavel
+ *    title:
+ *     type: string
+ *     description: The article's title
+ *     example: Hello everyone!
+ *    text:
+ *     type: string
+ *     description: The article's text
+ *     example: How are you?
+ *    createdAt:
+ *     type: string
+ *     description: The criation of article
+ *     example: 2023-10-25T12:10:31.006Z
+ *    updatedAt:
+ *     type: string
+ *     description: The update of article
+ *     example: 2023-10-25T12:19:37.915Z
+ *    userId:
+ *     type: number
+ *     description: The user's id
+ *     example: 1
  */
 
 const Article: IUserArticle = connection.define('articles', {

@@ -37,7 +37,30 @@ import errorHandler from '../middleware/ErrorHandlingMiddleware';
  *        $ref: '#/components/CreateArticleResponse'
  */
 router.post(endpoints.addArticle, checkRole('AUTHOR'), UserValidator.checkAddArticle(), errorHandler, AuthorController.addArticle);
-router.get(endpoints.getArticles, checkRole('AUTHOR'), AuthorController.getArticles);
+/**
+ * @swagger
+ * /author/get/articles/?userId={id}:
+ *  get:
+ *   parameters:
+ *    - name: id
+ *      in: path
+ *      description: Numeric ID of the user to retrieve
+ *      required: true
+ *      type: number
+ *   tags:
+ *   - Article
+ *   summary: A list of articles with user's id
+ *   responses:
+ *    200:
+ *     description: Success
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: array
+ *        items:
+ *         $ref: '#/components/ListArticlesResponse'
+ */
+router.get(endpoints.getArticles, AuthorController.getArticles);
 router.post(endpoints.deleteArticles, checkRole('AUTHOR'), AuthorController.deleteArticles);
 router.post(endpoints.updateArticle, checkRole('AUTHOR'), AuthorController.updateArticle);
 export default router;

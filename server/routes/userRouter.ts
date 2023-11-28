@@ -16,7 +16,7 @@ import errorHandler from '../middleware/ErrorHandlingMiddleware';
  *   summary: Authorization
  *   responses:
  *    200:
- *     description: App is up and running
+ *     description: Success
  */
 router.get(endpoints.authorization, UserController.authorization);
 /**
@@ -67,28 +67,20 @@ router.post(endpoints.addUser, UserValidator.checkAddUser(), errorHandler, UserC
  * @swagger
  * /panel/get/users:
  *  get:
- *   security:
- *    - Authorization: []
- *   parameters:
- *    - name: Authorization
- *      in: header
- *      description: An authorization header
- *      required: true
- *      type: string
  *   tags:
  *   - User
  *   summary: A list of users with role 'author'
  *   responses:
  *    200:
- *     description: App is up and running
+ *     description: Success
  *     content:
  *      application/json:
  *       schema:
  *        type: array
  *        items:
- *         $ref: '#/components/ListUsers'
+ *         $ref: '#/components/ListUsersResponse'
  */
-router.get(endpoints.getUsers, checkRole('ADMIN'), UserController.getUsers);
+router.get(endpoints.getUsers, UserController.getUsers);
 /**
  * @swagger
  * /panel/delete/users:

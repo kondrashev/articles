@@ -38,11 +38,7 @@ export const deleteUsers = createAsyncThunk<listId, listId, { rejectValue: strin
 });
 
 export const getUsers = createAsyncThunk<IUser[]>('user/getUsers', async () => {
-  const response = await fetch(`${endpoints.userRouter}${endpoints.getUsers}`, {
-    headers: {
-      Authorization: localStorage.token,
-    },
-  });
+  const response = await fetch(`${endpoints.userRouter}${endpoints.getUsers}`);
   const users: Promise<IUser[]> = response.json();
   return users;
 });

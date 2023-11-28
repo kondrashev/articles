@@ -24,7 +24,7 @@ interface IUserModel extends IUser {
  *      description: The user's login
  *      example: pavel
  *     password:
- *      type: number
+ *      type: string
  *      description: The user's password
  *      example: 12
  *   CheckUserResponse:
@@ -45,11 +45,11 @@ interface IUserModel extends IUser {
  *     token:
  *      type: string
  *      description: The key access to methods
- *      example: 'RtlutCJjkVgRYIGizH1QIot-BBz2Yqjso'
+ *      example: RtlutCJjkVgRYIGizH1QIot-BBz2Yqjso
  *     avatar:
  *      type: string
  *      description: The path of user photo
- *      example: './static/images/avatar.jpg'
+ *      example: ./static/images/avatar.jpg
  *   CreateUserRequest:
  *    type: object
  *    properties:
@@ -75,8 +75,8 @@ interface IUserModel extends IUser {
  *     token:
  *      type: string
  *      description: The key access to methods
- *      example: 'RtlutCJjkVgRYIGizH1QIot-BBz2Yqjso'
- *   ListUsers:
+ *      example: RtlutCJjkVgRYIGizH1QIot-BBz2Yqjso
+ *   ListUsersResponse:
  *    type: object
  *    properties:
  *     id:
@@ -90,7 +90,7 @@ interface IUserModel extends IUser {
  *     password:
  *      type: string
  *      description: The user's password
- *      example: '7qLsNyOn41sDQCnjsUGX'
+ *      example: 7qLsNyOn41sDQCnjsUGX
  *     role:
  *      type: string
  *      description: The user's role with appropriate rights
@@ -98,15 +98,15 @@ interface IUserModel extends IUser {
  *     avatar:
  *      type: string
  *      description: The path of user photo
- *      example: './static/images/avatar.jpg'
+ *      example: ./static/images/avatar.jpg
  *     createdAt:
  *      type: string
  *      description: The creation date of user
- *      example: '2023-10-25T08:15:54.255Z'
+ *      example: 2023-10-25T08:15:54.255Z
  *     updatedAt:
  *      type: string
  *      description: The update date of user
- *      example: '2023-10-25T08:15:54.255Z'
+ *      example: 2023-10-25T08:15:54.255Z
  *   DeleteUsersRequest:
  *    type: object
  *    properties:
