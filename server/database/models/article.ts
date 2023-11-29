@@ -110,6 +110,29 @@ interface IUserArticle extends IArticle {
  *     type: number
  *     description: The user's id
  *     example: 1
+ *  DeleteArticlesRequest:
+ *   type: object
+ *   properties:
+ *    listId:
+ *     type: array
+ *     example: [1,2,3]
+ *  DeleteArticlesResponse:
+ *   example: [1,2,3]
+ *  UpdateArticleRequest:
+ *   type: object
+ *   properties:
+ *    id:
+ *     type: number
+ *     description: The article's id
+ *     example: 1
+ *    title:
+ *     type: string
+ *     description: The article's title
+ *     example: Hello
+ *    text:
+ *     type: string
+ *     description: The article's text
+ *     example: How are you doing?
  */
 
 const Article: IUserArticle = connection.define('articles', {

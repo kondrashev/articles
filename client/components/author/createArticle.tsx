@@ -130,7 +130,7 @@ const CreateArticle: FC = () => {
                 marginTop: '10px',
                 marginLeft: '10px',
               }}
-              value={values.titleEditor}
+              value={`${values.titleEditor.charAt(0).toUpperCase()}${values.titleEditor.slice(1)}`}
               placeholder="Add a title of article"
               onChange={onChangeTitleArticle}
             />

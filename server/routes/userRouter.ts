@@ -86,9 +86,9 @@ router.get(endpoints.getUsers, UserController.getUsers);
  * /panel/delete/users:
  *  post:
  *   security:
- *    - Authorization: []
+ *    - bearerAuth: []
  *   parameters:
- *    - name: Authorization
+ *    - name: auth
  *      in: header
  *      description: An authorization header
  *      required: true
@@ -116,9 +116,9 @@ router.post(endpoints.deleteUsers, checkRole('ADMIN'), UserController.deleteUser
  * /panel/upload/file:
  *  post:
  *   security:
- *    - Authorization: []
+ *    - bearerAuth: []
  *   parameters:
- *    - name: Authorization
+ *    - name: auth
  *      in: header
  *      description: An authorization header
  *      required: true

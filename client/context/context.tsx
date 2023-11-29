@@ -37,7 +37,7 @@ const AppContextPovider: React.FC<IProps> = ({ children }) => {
     loginForm: '',
     registration: false,
     titleEditor: '',
-    textEditor: '',
+    textEditor: ''.charAt(0).toUpperCase(),
     isShowEditor: false,
     isEditEditor: false,
     articleId: 0,

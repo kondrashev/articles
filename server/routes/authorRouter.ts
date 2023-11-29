@@ -12,10 +12,10 @@ import errorHandler from '../middleware/ErrorHandlingMiddleware';
  * /author/add/article:
  *  post:
  *   security:
- *    - Authorization: []
+ *    - bearerAuth: []
  *   parameters:
- *    - name: Authorization
- *      in: header
+ *    - name: auth
+ *      in: headers
  *      description: An authorization header
  *      required: true
  *      type: string
@@ -61,6 +61,64 @@ router.post(endpoints.addArticle, checkRole('AUTHOR'), UserValidator.checkAddArt
  *         $ref: '#/components/ListArticlesResponse'
  */
 router.get(endpoints.getArticles, AuthorController.getArticles);
+/**
+ * @swagger
+ * /author/delete/articles:
+ *  post:
+ *   security:
+ *    - bearerAuth: []
+ *   parameters:
+ *    - name: auth
+ *      in: header
+ *      description: An authorization header
+ *      required: true
+ *      type: string
+ *   tags:
+ *   - Article
+ *   summary: Delete articles
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       $ref: '#/components/DeleteArticlesRequest'
+ *   responses:
+ *    200:
+ *     description: Success
+ *     content:
+ *      application/json:
+ *       schema:
+ *        $ref: '#/components/DeleteArticlesResponse'
+ */
 router.post(endpoints.deleteArticles, checkRole('AUTHOR'), AuthorController.deleteArticles);
+/**
+ * @swagger
+ * /author/update/article:
+ *  post:
+ *   security:
+ *    - bearerAuth: []
+ *   parameters:
+ *    - name: auth
+ *      in: headers
+ *      description: An authorization header
+ *      required: true
+ *      type: string
+ *   tags:
+ *   - Article
+ *   summary: Update an article
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       $ref: '#/components/UpdateArticleRequest'
+ *   responses:
+ *    200:
+ *     description: Success
+ *     content:
+ *      application/json:
+ *       schema:
+ *        $ref: '#/components/CreateArticleResponse'
+ */
 router.post(endpoints.updateArticle, checkRole('AUTHOR'), AuthorController.updateArticle);
 export default router;
