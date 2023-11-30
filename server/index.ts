@@ -6,9 +6,9 @@ import cors from 'cors';
 import express, { json, Request, Response, static as stat } from 'express';
 import path from 'path';
 
-import User from './database/models/user';
 import router from '../server/routes/index';
 import connection from './database/connection';
+import User from './database/models/user';
 import errorHandler from './middleware/ErrorHandlingMiddleware';
 
 const PORT = process.env.PORT;
