@@ -1,4 +1,4 @@
-import '@styles/authorListArticles';
+import '@styles/AuthorListArticles';
 
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
