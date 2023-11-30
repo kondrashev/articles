@@ -1,4 +1,4 @@
-import '@styles/ListArticles';
+import '@styles/ListArticles.scss';
 
 import Box from '@mui/material/Box';
 import React, { FC } from 'react';

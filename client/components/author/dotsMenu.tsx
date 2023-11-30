@@ -1,4 +1,4 @@
-import '@styles/DotsMenu';
+import '@styles/DotsMenu.scss';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditNoteIcon from '@mui/icons-material/EditNote';
