@@ -39,6 +39,7 @@ const EditorTool: FC = () => {
         lineHeight: 0.5,
         fontSize: '20px',
         color: '#515151',
+        textTransform: 'capitalize',
       }}
       toolbarStyle={{
         marginTop: '30px',

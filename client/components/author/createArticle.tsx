@@ -123,16 +123,13 @@ const CreateArticle: FC = () => {
           <Box>
             <TextField
               multiline
+              inputProps={{ style: { textTransform: 'capitalize' } }}
               label="Title"
               variant="outlined"
-              sx={{
-                width: '650px',
-                marginTop: '10px',
-                marginLeft: '10px',
-              }}
-              value={`${values.titleEditor.charAt(0).toUpperCase()}${values.titleEditor.slice(1)}`}
               placeholder="Add a title of article"
               onChange={onChangeTitleArticle}
+              className="createArticleTitle"
+              value={values.titleEditor}
             />
             {!values.titleEditor && (
               <InputLabel sx={{ position: 'absolute', top: '80px', left: '10px', width: 'auto', color: 'red' }}>Title can not be empty!</InputLabel>
