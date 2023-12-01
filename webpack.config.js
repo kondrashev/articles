@@ -1,5 +1,5 @@
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 require('babel-polyfill');
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', 'css', '.scss'],
     alias: {
       '@styles': path.resolve(__dirname, 'client/styles'),
     },

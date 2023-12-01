@@ -7,6 +7,9 @@ class UserValidator {
       body('password').notEmpty().withMessage('The password can not be empty'),
     ];
   }
+  checkAddArticle() {
+    return [body('title').notEmpty().withMessage('The title can not be empty'), body('text').notEmpty().withMessage('The text can not be empty')];
+  }
 }
 
 export default new UserValidator();
