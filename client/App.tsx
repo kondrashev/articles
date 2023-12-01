@@ -16,6 +16,7 @@ import { setupStore } from './store';
 const store = setupStore();
 
 const App: FC = () => {
+  console.log('test');
   return (
     <Provider store={store}>
       <AppContextPovider>
