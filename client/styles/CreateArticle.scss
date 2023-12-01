@@ -1,0 +1,19 @@
+.containerCreateArticle{
+    position: absolute;
+    width: 660px;
+    top: -50px;
+    left: 5px;
+    background: #fff;
+    border: 1px solid #D3D3D3;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    z-index: 10;
+
+     .createArticleTitle{
+        width: 650px;
+        margin-top: 10px;
+        margin-left: 10px;
+     }
+}
