@@ -1,4 +1,4 @@
-import '@styles/ListArticles.scss';
+import '@styles/ListArticles';
 
 import SearchIcon from '@mui/icons-material/Search';
 import AppBar from '@mui/material/AppBar';

@@ -1,4 +1,4 @@
-import '@styles/CreateArticle.scss';
+import '@styles/CreateArticle';
 
 import CancelIcon from '@mui/icons-material/Cancel';
 import NearMeIcon from '@mui/icons-material/NearMe';
