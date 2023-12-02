@@ -1,9 +1,17 @@
 export default {
-  signIn: '/panel/check',
   userRouter: '/panel',
   authorization: '/',
   checkAuthorization: '/check',
   addUser: '/add/user',
   getUsers: '/get/users',
   deleteUsers: '/delete/users',
+  uploadFile: '/upload/file',
+  authorRouter: '/author',
+  addArticle: '/add/article',
+  getArticles: '/get/articles',
+  deleteArticles: '/delete/articles',
+  updateArticle: '/update/article',
+  publicRouter: '/public',
+  listArticles: '/list/articles',
+  searchArticles: '/search/articles',
 };

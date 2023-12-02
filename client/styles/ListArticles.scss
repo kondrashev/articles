@@ -1,0 +1,60 @@
+.containerListPublicArticles{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    .appBar{
+        background-color: #318EA3;
+        width:100%;
+        white-space:nowrap;
+        overflow: hidden;
+
+        .search{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            padding: 3px;
+        }
+    
+        .search input{
+            background-color: #318EA3;
+            height: 25px;
+        }
+
+        .search::before{
+            content: '';
+            background: conic-gradient(transparent 180deg, #fff, transparent);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            aspect-ratio: 1;
+            width: 100%;
+            animation: rotate 1s linear infinite;
+         }
+     
+         @keyframes rotate {
+             from{
+                 transform: translate(-50%, -50%) rotate(0turn);
+             }
+             to{
+                 transform: translate(-50%, -50%) rotate(1turn);
+             }
+         }
+
+    }
+}
+
+.searchList{
+    width: 312px;
+    max-width: 100%;
+    position: absolute;
+    top: 70px;
+    left: 32px;
+ }

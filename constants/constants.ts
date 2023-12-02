@@ -1,14 +1,22 @@
 export interface IUser {
   id?: number;
   login: string;
-  role: string;
-  password?: string;
+  role?: string;
+  password: string;
   token?: string;
+  registration?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  avatar?: string;
 }
 
 export interface IArticle {
   id: number;
-  author: string;
+  avatar: string;
+  login: string;
   title: string;
   text: string;
+  createdAt?: string;
+  updatedAt?: string;
+  userId?: number;
 }
