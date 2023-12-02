@@ -2,7 +2,7 @@ version: "3.8"
 services:
   node_backend:
     container_name: node_server
-    image: articles:0.0.1
+    image: test_articles:0.0.1
     build:
       context: .
     restart: always
