@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "task",
   "main": "index.js",
-  "engines": {
-    "node": "16.15.0"
-  },
   "scripts": {
     "start": "ts-node-dev server/index.ts",
     "dev": "NODE_ENV=development ts-node-dev --respawn server/index.ts",
