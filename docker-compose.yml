@@ -2,14 +2,13 @@ version: "3.3"
 services:
   node_backend:
     container_name: node_server
-    image: articles:0.0.1
+    image: articles
     build:
       context: .
     restart: always
     ports:
       - 80:80
     environment:
-      - PORT=80
       - DB_NAME=articles
       - DB_USER=postgres
       - DB_PASSWORD=1234
@@ -24,7 +23,7 @@ services:
     container_name: node_db
     image: "postgres:14"
     ports:
-      - 5434:5434
+      - 5434:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1234
