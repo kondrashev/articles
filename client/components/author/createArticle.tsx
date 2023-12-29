@@ -73,7 +73,7 @@ const CreateArticle: FC = () => {
     setValues({
       ...values,
       isShowCloseButtonCreateArticle: false,
-      titleEditor: e.currentTarget.value,
+      titleEditor: `${e.currentTarget.value.charAt(0).toUpperCase()}${e.currentTarget.value.slice(1)}`,
     });
   };
 
@@ -123,7 +123,6 @@ const CreateArticle: FC = () => {
           <Box>
             <TextField
               multiline
-              inputProps={{ style: { textTransform: 'capitalize' } }}
               label="Title"
               variant="outlined"
               placeholder="Add a title of article"
