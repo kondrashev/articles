@@ -11,7 +11,7 @@ start: 1 2 3 4 5
 	docker-compose build
 4:
 	echo "Running docker-compose start"
-	docker-compose -f docker-compose-dev.yml up -d
+	docker-compose up -d
 5:
 	echo "Running webpack watch"
 	npm run client
