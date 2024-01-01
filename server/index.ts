@@ -25,7 +25,7 @@ app.use(errorHandler);
 (async () => {
   try {
     await connection.sync({ alter: true });
-    const getUserAd = await User.findOne({ where: { login: 'pavel' } });
+    const getUserAd = await User.findOne({ where: { login: 'admin' } });
     !getUserAd &&
       (await User.create({
         login: 'admin',
