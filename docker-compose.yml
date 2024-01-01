@@ -20,7 +20,7 @@ services:
     container_name: node_db
     image: "postgres:14"
     ports:
-      - 5434:5432
+      - 5434:5434
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1234
