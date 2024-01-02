@@ -44,7 +44,7 @@ const ListArticles: FC = () => {
   const sortArticles: IArticle[] = !values.searchGetArticle ? JSON.parse(articles) : articleSearch;
 
   useEffect(() => {
-    if (id !== 0) {
+    if (id !== 0 && id !== undefined) {
       dispatch(getArticles(id));
     } else {
       dispatch(getPublicArticles(values.page));
