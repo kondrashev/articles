@@ -42,6 +42,13 @@ class AuthorController {
     const article: IArticle = await Article.findOne({ where: { id } });
     return res.json(article);
   }
+
+  async updateArticleAvatar(req: Request, res: Response) {
+    const { login, avatar } = req.body;
+    await Article.update({ avatar: String(avatar) }, { where: { login } });
+    const articles: IArticle[] = await Article.findAll({ where: { login } });
+    return res.json(articles);
+  }
 }
 
 export default new AuthorController();

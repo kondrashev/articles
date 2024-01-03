@@ -55,6 +55,27 @@ export const updateArticle = createAsyncThunk<IArticle, IUpdateDataArticle, { re
   },
 );
 
+interface IUpdateArticleAvatar {
+  login: string;
+  avatar: string;
+}
+
+export const updateArticleAvatar = createAsyncThunk<IArticle[], IUpdateArticleAvatar, { rejectValue: string }>(
+  'author/updateArticleAvatar',
+  async ({ login, avatar }, { rejectWithValue }) => {
+    const response = await fetch(`${endpoints.authorRouter}${endpoints.updateArticleAvatar}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: localStorage.token },
+      body: JSON.stringify({ login, avatar }),
+    });
+    if (!response.ok) {
+      return rejectWithValue(`Error from server №${response.status} ${response.statusText}!!!`);
+    }
+    const articles: Promise<IArticle[]> = response.json();
+    return articles;
+  },
+);
+
 interface listId {
   listId: number[];
 }
