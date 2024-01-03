@@ -121,4 +121,5 @@ router.post(endpoints.deleteArticles, checkRole('AUTHOR'), AuthorController.dele
  *        $ref: '#/components/CreateArticleResponse'
  */
 router.post(endpoints.updateArticle, checkRole('AUTHOR'), AuthorController.updateArticle);
+router.post(endpoints.updateArticleAvatar, checkRole('AUTHOR'), AuthorController.updateArticleAvatar);
 export default router;
