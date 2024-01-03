@@ -7,11 +7,12 @@ import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC, useEffect } from 'react';
 
 import { IUser } from '../../../constants/constants';
 import { useAppContext } from '../../context/context';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { updateArticleAvatar } from '../../store/authors/actions/actions';
 import { upLoadFile } from '../../store/users/actions/actions';
 
 const AppBarMenu: FC = () => {
@@ -25,6 +26,10 @@ const AppBarMenu: FC = () => {
   const handleCloseNavMenu = () => {
     location.href = '/panel';
   };
+
+  useEffect(() => {
+    dispatch(updateArticleAvatar({ login, avatar }));
+  }, [avatar]);
 
   const loadUpFile = (event: ChangeEvent<HTMLInputElement>) => {
     const data = { login, file: event.target.files[0] };

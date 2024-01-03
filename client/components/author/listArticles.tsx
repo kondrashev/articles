@@ -32,7 +32,7 @@ export const htmlToDraftBlocks = (html) => {
 
 const ListArticles: FC = () => {
   const { values, setValues } = useAppContext();
-  const { id }: IUser = useAppSelector((state) => state.usersReducer.user);
+  const { id, avatar }: IUser = useAppSelector((state) => state.usersReducer.user);
   const dispatch = useAppDispatch();
   const articles: string = useAppSelector((state) =>
     id !== 0 ? JSON.stringify(state.authorsReducer.articles) : JSON.stringify(state.listArticlesReducer.articles.rows),
@@ -49,7 +49,7 @@ const ListArticles: FC = () => {
     } else {
       dispatch(getPublicArticles(values.page));
     }
-  }, [values.page]);
+  }, [values.page, avatar]);
 
   const getNumberPage = (event: ChangeEvent<unknown>, value: number) => {
     setValues({
