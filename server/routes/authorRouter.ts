@@ -121,5 +121,36 @@ router.post(endpoints.deleteArticles, checkRole('AUTHOR'), AuthorController.dele
  *        $ref: '#/components/CreateArticleResponse'
  */
 router.post(endpoints.updateArticle, checkRole('AUTHOR'), AuthorController.updateArticle);
+/**
+ * @swagger
+ * /author/update/article/avatar:
+ *  post:
+ *   security:
+ *    - bearerAuth: []
+ *   parameters:
+ *    - name: auth
+ *      in: headers
+ *      description: An authorization header
+ *      required: true
+ *      type: string
+ *   tags:
+ *   - Article
+ *   summary: Update an article avatar
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       $ref: '#/components/UpdateArticAvatarleRequest'
+ *   responses:
+ *    200:
+ *     description: Success
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: array
+ *        items:
+ *         $ref: '#/components/ListArticlesResponse'
+ */
 router.post(endpoints.updateArticleAvatar, checkRole('AUTHOR'), AuthorController.updateArticleAvatar);
 export default router;
