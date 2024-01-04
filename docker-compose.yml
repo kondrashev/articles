@@ -2,17 +2,10 @@ version: "3.3"
 services:
   node_backend:
     container_name: node_server
-    image: articles
-    build:
-      context: .
+    image: f883189fb10f28b00af8394bd7c18d98822073a54e2ce0db21f28bc8944cc9ea
     restart: always
     ports:
       - 80:80
-    environment:
-      - DB_NAME=articles
-      - DB_USER=postgres
-      - DB_PASSWORD=1234
-      - DB_HOST=node_db
     command: npm run dev
     depends_on:
       - node_db
@@ -21,10 +14,6 @@ services:
     image: "postgres:14"
     ports:
       - 5434:5434
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=1234
-      - POSTGRES_DB=articles
     volumes:
       - nps_data:/var/lib/postgresql/data
     restart: always

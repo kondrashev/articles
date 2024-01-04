@@ -133,6 +133,17 @@ interface IUserArticle extends IArticle {
  *     type: string
  *     description: The article's text
  *     example: How are you doing?
+ *  UpdateArticAvatarleRequest:
+ *   type: object
+ *   properties:
+ *    login:
+ *     type: string
+ *     description: The user's login
+ *     example: Pavel
+ *    avatar:
+ *     type: string
+ *     description: The user's path of avatar
+ *     example: images/avatar.jpg
  */
 
 const Article: IUserArticle = connection.define('articles', {
