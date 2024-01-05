@@ -3,8 +3,6 @@ services:
   node_backend:
     container_name: node_server
     image: articles
-    build:
-      context: .
     restart: always
     ports:
       - 80:80
