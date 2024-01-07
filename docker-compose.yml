@@ -2,7 +2,7 @@ version: "3.3"
 services:
   node_backend:
     container_name: node_server
-    image: kondrashev/articles_test
+    image: kondrashev/articles:latest
     restart: always
     ports:
       - 80:80
