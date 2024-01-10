@@ -19,10 +19,6 @@ services:
     image: "postgres:14"
     ports:
       - 5434:5434
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=1234
-      - POSTGRES_DB=articles
     volumes:
       - nps_data:/var/lib/postgresql/data
     restart: always
