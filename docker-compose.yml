@@ -6,12 +6,6 @@ services:
     restart: always
     ports:
       - 80:80
-    environment:
-      - PORT=80
-      - DB_NAME=articles
-      - DB_USER=postgres
-      - DB_PASSWORD=1234
-      - DB_HOST=node_db
     command: npm run dev
     depends_on:
       - node_db
