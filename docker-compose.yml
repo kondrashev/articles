@@ -7,7 +7,6 @@ services:
     ports:
       - 80:80
     environment:
-      - PORT=80
       - DB_NAME=articles
       - DB_USER=postgres
       - DB_PASSWORD=1234
