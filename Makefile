@@ -8,10 +8,10 @@ start: 1 2 3 4 5 6 7 8
 	npm run build
 3:
 	echo "Running docker-compose build"
-	docker-compose build
+	docker-compose -f docker-compose-aws.yml build
 4:
 	echo "Running docker-compose start"
-	docker-compose -f docker-compose-dev.yml up -d
+	docker-compose -f docker-compose-aws.yml up -d
 5:
 	echo "Docker authorization"
 	docker login
