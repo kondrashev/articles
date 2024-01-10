@@ -1,17 +1,5 @@
 version: "3.3"
 services:
-  node_db:
-    container_name: node_db
-    image: "postgres:14"
-    ports:
-      - 5434:5434
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=1234
-      - POSTGRES_DB=articles
-    volumes:
-      - nps_data:/var/lib/postgresql/data
-    restart: always
   node_backend:
     container_name: node_server
     image: kondrashev/articles:latest
@@ -27,5 +15,17 @@ services:
     command: npm run dev
     depends_on:
       - node_db
+  node_db:
+    container_name: node_db
+    image: "postgres:14"
+    ports:
+      - 5434:5434
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=articles
+    volumes:
+      - nps_data:/var/lib/postgresql/data
+    restart: always
 volumes:
   nps_data: {}
