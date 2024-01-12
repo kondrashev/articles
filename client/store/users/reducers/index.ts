@@ -13,7 +13,7 @@ interface userState {
 const initialState: userState = {
   loading: false,
   error: '',
-  user: { id: 0, avatar: '', login: 'none', password: '', role: 'AUTHOR' },
+  user: { id: 0, avatar: 'A', login: 'none', password: '', role: 'AUTHOR' },
   users: [],
 };
 

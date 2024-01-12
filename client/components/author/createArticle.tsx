@@ -49,7 +49,7 @@ const CreateArticle: FC = () => {
       dispatch(updateArticle(data));
     } else {
       const data = {
-        avatar,
+        avatar: avatar,
         login,
         title: values.titleEditor,
         text: values.textEditor,

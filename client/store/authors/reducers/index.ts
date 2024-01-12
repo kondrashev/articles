@@ -13,7 +13,7 @@ interface authorState {
 const initialState: authorState = {
   loading: false,
   error: '',
-  article: { id: 0, avatar: '', login: '', title: '', text: '' },
+  article: { id: 0, avatar: 'A', login: '', title: '', text: '' },
   articles: [],
 };
 

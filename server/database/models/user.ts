@@ -133,7 +133,7 @@ const User: IUserModel = connection.define('users', {
   login: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: 'AUTHOR' },
-  avatar: { type: DataTypes.STRING, defaultValue: 'P' },
+  avatar: { type: DataTypes.STRING, defaultValue: 'A' },
 });
 
 User.hasMany(Article, { onDelete: 'cascade' });

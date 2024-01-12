@@ -53,7 +53,7 @@ class UserController {
     const hashPassword = await hash(password, 5);
     const user: IUser = await User.create({ login, password: hashPassword });
     const token: string = generateJWT(user.login, user.role);
-    const userGet = { login: user.login, role: user.role, token };
+    const userGet = { id: user.id, login: user.login, role: user.role, token };
     return res.json(userGet);
   }
 
