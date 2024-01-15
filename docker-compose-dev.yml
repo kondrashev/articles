@@ -9,8 +9,6 @@ services:
     ports:
       - 80:80
     command: npm run dev
-    depends_on:
-      - node_db
     volumes:
       - /Users/pavel/Documents/Development/Front-End/tests/articles:/app
       - /app/node_modules
