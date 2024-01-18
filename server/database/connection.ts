@@ -6,16 +6,6 @@ if (process.env.NODE_ENV === 'development') {
     host: process.env.DB_HOST,
     dialect: 'postgres',
   });
-} else {
-  connection = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
-  });
 }
 
 export default connection;
