@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev server/index.ts",
-    "dev": "NODE_ENV=development ts-node-dev --respawn server/index.ts",
+    "dev": "ts-node-dev --respawn server/index.ts",
     "client": "webpack --watch --output ./server/static/bundle.js",
     "build": "webpack --output ./server/static/bundle.js",
     "prepare": "husky install",
