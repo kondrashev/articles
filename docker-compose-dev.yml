@@ -1,8 +1,8 @@
-version: "3"
+version: '3'
 services:
   database:
     container_name: database
-    image: "postgres:14"
+    image: 'postgres:14'
     ports:
       - 5434:5434
     environment:
@@ -28,7 +28,7 @@ services:
     links:
       - database
     volumes:
-      - /Users/pavel/Documents/Development/Front-End/tests/articles:/app
       - /app/node_modules
+      - ./:/app
 volumes:
   nps_data: {}
