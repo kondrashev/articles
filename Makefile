@@ -2,7 +2,7 @@
 start: 1 2 3 4 5 6 7 8
 1:
 	echo "Running docker-compose stop"
-	docker-compose down
+	docker-compose -f docker-compose-dev.yml down
 2:
 	echo "Running docker-compose build"
 	docker-compose -f docker-compose-dev.yml build
