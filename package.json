@@ -4,9 +4,8 @@
   "description": "task",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev server/index.ts",
-    "dev": "ts-node-dev --respawn server/index.ts",
-    "client": "webpack --watch --output ./server/static/bundle.js",
+    "start": "ts-node-dev --respawn server/index.ts",
+    "dev": "webpack --watch --output ./server/static/bundle.js",
     "build": "webpack --output ./server/static/bundle.js",
     "prepare": "husky install",
     "lint": "eslint . --ext .ts,.tsx"
