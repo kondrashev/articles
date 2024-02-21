@@ -1,48 +1,47 @@
 .formAuthorization {
-    width: 400px;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background: #b0b5b7;
-    border-radius: 10px;
+  width: 400px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: #a8daf3;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 80%);
+
+  .fields {
+    width: 360px;
+    height: 50px;
+  }
+
+  .formAlert {
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, 80%);
+    top: 208px;
+    left: 15%;
+  }
 
-    .fields {
-        width: 360px;
-        height: 50px;
-    }
+  .inputErrorLogin {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    font-size: 13px;
+    color: red;
+  }
 
-    .formAlert{
-        position: absolute;
-        top: 208px;
-        left: 15%;
-    }
+  .inputErrorPassword {
+    position: absolute;
+    top: 210px;
+    left: 30px;
+    font-size: 13px;
+    color: red;
+  }
 
-    .inputErrorLogin{
-        position: absolute;
-        top:100px;
-        left: 30px;
-        font-size: 13px;
-        color: red;
-    }
-
-    .inputErrorPassword{
-        position: absolute;
-        top:210px;
-        left: 30px;
-        font-size: 13px;
-        color: red;
-    }
-
-    .switch{
-        position: absolute;
-        top:225px;
-        left: 30px;
-        color: #fff;
-    }
-
+  .switch {
+    position: absolute;
+    top: 225px;
+    left: 30px;
+    color: #fff;
+  }
 }
