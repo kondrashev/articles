@@ -2,13 +2,13 @@
 start: 1 2 3 4 5 6 7 8
 1:
 	echo "Running docker-compose stop"
-	docker-compose -f docker-compose-dev.yml down
+	docker-compose down
 2:
 	echo "Running docker-compose build"
-	docker-compose -f docker-compose-dev.yml build
+	docker-compose build
 3:
 	echo "Running docker-compose start"
-	docker-compose -f docker-compose-dev.yml up -d
+	docker-compose up -d
 4:
 	echo "Docker delete image"
 	docker rmi kondrashev/articles:latest
@@ -23,4 +23,4 @@ start: 1 2 3 4 5 6 7 8
 	docker push kondrashev/articles
 8:
 	echo "Running webpack watch"
-	npm run client
+	npm run dev
