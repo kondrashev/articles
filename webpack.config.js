@@ -3,9 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 require('babel-polyfill');
 
 module.exports = {
-  entry: ['babel-polyfill', './client/App.tsx'],
-  devtool: 'sourcemaps',
-  cache: true,
+  entry: path.resolve(__dirname, 'client', 'App.tsx'),
   mode: 'development',
   output: {
     filename: './server/static/bundle.js',
@@ -16,7 +14,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', 'css', '.scss'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
     alias: {
       '@styles': path.resolve(__dirname, 'client/styles'),
     },
@@ -26,11 +24,7 @@ module.exports = {
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/env', '@babel/preset-typescript', '@babel/preset-react'],
-          plugins: ['@babel/plugin-proposal-class-properties'],
-        },
+        use: ['babel-loader'],
       },
       {
         test: /\.(css|s[ac]ss)$/,
