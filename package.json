@@ -4,7 +4,7 @@
   "description": "task",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --respawn server/index.ts",
+    "start": "ts-node-dev --respawn --inspect=0.0.0.0:9229 server/index.ts",
     "dev": "webpack --watch --output ./server/static/bundle.js",
     "build": "webpack --config webpack.config.js",
     "prepare": "husky install",
